@@ -1,0 +1,17 @@
+{
+  "name": "Load Impact LUA API Doc",
+  "description": "",
+  "version": "0.0.1",
+  "author": {
+    "email": "support@loadimpact.com",
+    "name": "Load Impact"
+  },
+  "license": "MIT",
+  "keywords": [
+    "loadimpact"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:loadimpact/loadimpact-lua-api-doc.git"
+  }
+}

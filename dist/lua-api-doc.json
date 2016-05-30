@@ -1,0 +1,2637 @@
+{
+  "modules": [
+  {
+      "id":"base64",
+      "title": "base64",
+      "description": "Functions to decode/encode data from/to base64.",
+      "apis": [
+        { "id": "base64-decode",
+          "name": "decode",
+          "longName": "decode(data)",
+          "description": "This function decodes a base64-encoded string into its original form.",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "string",
+              "description": "The base64-encoded data to be decoded."
+            }
+          ],
+          "returns": "string or (nil, error message)"
+        },
+        { "id": "base64-encode",
+          "name": "encode",
+          "longName": "encode(data)",
+          "description": "This function takes a string variable and base64-encodes it.",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "string",
+              "description": "The string to be encoded."
+            }
+          ],
+          "returns": "string or (nil, error message)"
+        }
+      ],
+      "examples": [{
+        "id": "base64-examples",
+        "title": "Examples",
+        "content": [
+          "-- Fetch a small PNG image, and send it as a base64-encoded request parameter in a subsequent request",
+          "local img_response = http.get( { url=\"http://test.loadimpact.com//images/logo.png\", response_body_bytes=50000 } )",
+          "local encoded_image = base64.encode(img_response.body)",
+          "local resp = http.get( { url=\"http://test.loadimpact.com/index.php?image_data=\" .. encoded_image } )"
+        ]
+      }]
+  },
+  {
+    "id":"bit",
+    "title": "bit",
+    "description": "This module provides functionality for bit manipulations. It is based on the LuaJIT BitOp module – see <a href=\"http://bitop.luajit.org/api.html\">http://bitop.luajit.org/api.html</a> for more details about BitOp.",
+    "apis": [
+      { "id": "bit-arshift",
+        "name": "arshift",
+        "longName": "arshift(x, n)",
+        "description": "This function performs a bitwise, arithmetic right-shift of the first argument (x) by the number of bits given by the second argument (n).",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "description": "The integer to be bit-shifted."
+          },
+          {
+            "name": "n",
+            "type": "number",
+            "description": "The number of bit positions to shift."
+          }
+        ],
+        "returns": "number"
+      },
+      { "id": "bit-band",
+        "name": "band",
+        "longName": "band(x1, x2, [...])",
+        "description": "This function performs a logical and on all arguments supplied. The number of arguments can be more than two.",
+        "parameters": [
+          {
+            "name": "x1",
+            "type": "number",
+            "description": "The first value."
+          },
+          {
+            "name": "x2",
+            "type": "number",
+            "description": "The second value."
+          },
+          {
+            "name": "...",
+            "type": "number",
+            "description": "More values."
+          }
+        ],
+        "returns": "number"
+      },
+      { "id": "bit-bnot",
+        "name": "bnot",
+        "longName": "bnot(x)",
+        "description": "This function returns the bitwise not of its argument (x).",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "description": "The value to return bitwise not of"
+          }
+        ],
+        "returns": "number"
+      },
+      { "id": "bit-bor",
+        "name": "bor",
+        "longName": "bor(x1, x2, [...])",
+        "description": "This function performs a logical or on all arguments supplied. The number of arguments can be more than two.",
+        "parameters": [
+          {
+            "name": "x1",
+            "type": "number",
+            "description": "The first value."
+          },
+          {
+            "name": "x2",
+            "type": "number",
+            "description": "The second value."
+          },
+          {
+            "name": "...",
+            "type": "number",
+            "description": "More values."
+          }
+        ],
+        "returns": "number"
+      },
+      { "id": "bit-swap",
+        "name": "bswap",
+        "longName": "bswap(x)",
+        "description": "This module provides functionality for bit manipulations. It is based on the LuaJIT BitOp module – see <a href=\"http://bitop.luajit.org/api.html\">http://bitop.luajit.org/api.html</a> for more details about BitOp.",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "description": "The integer whose bytes we want swapped."
+          }
+        ],
+        "returns": "number"
+      },
+      { "id": "bit-bxor",
+        "name": "bxor",
+        "longName": "bxor(x1, x2, [...])",
+        "description": "This function returns the bitwise xor on all arguments supplied. The number of arguments can be more than two.",
+        "parameters": [
+          {
+            "name": "x1",
+            "type": "number",
+            "description": "The first value."
+          },
+          {
+            "name": "x2",
+            "type": "number",
+            "description": "The second value."
+          },
+          {
+            "name": "...",
+            "type": "number",
+            "description": "More values."
+          }
+        ],
+        "returns": "number"
+      },
+      { "id": "bit-lshift",
+        "name": "lshift",
+        "longName": "lshift(x, n)",
+        "description": "This function performs a bitwise, logical left-shift of the first argument (x) by the number of bits given by the second argument (n).",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "description": "The integer to be bit-shifted."
+          },
+          {
+            "name": "n",
+            "type": "number",
+            "description": "The number of bit positions to shift."
+          }
+        ],
+        "returns": "number"
+      },
+      { "id": "bit-rol",
+        "name": "rol",
+        "longName": "rol(x, n)",
+        "description": "Returns the bitwise left rotation of its first argument (x) by the number of bits given by the second argument (n). Bits shifted out on one side are shifted back in on the other side. Only the lower 5 bits of the rotate count are used (reduces to the range [0..31]).",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "description": "The integer to be rotated."
+          },
+          {
+            "name": "n",
+            "type": "number",
+            "description": "The number of bit positions to rotate."
+          }
+        ],
+        "returns": "number"
+      },
+      { "id": "bit-ror",
+        "name": "ror",
+        "longName": "ror(x, n)",
+        "description": "Returns the bitwise right rotation of its first argument (x) by the number of bits given by the second argument (n). Bits shifted out on one side are shifted back in on the other side. Only the lower 5 bits of the rotate count are used (reduces to the range [0..31]).",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "description": "The integer to be rotated."
+          },
+          {
+            "name": "n",
+            "type": "number",
+            "description": "The number of bit positions to rotate."
+          }
+        ],
+        "returns": "number"
+      },
+      { "id": "bit-rshift",
+        "name": "rshift",
+        "longName": "rshift(x, n)",
+        "description": "This function performs a bitwise, logical right-shift of the first argument (x) by the number of bits given by the second argument (n).",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "description": "The integer to be bit-shifted."
+          },
+          {
+            "name": "n",
+            "type": "number",
+            "description": "The number of bit positions to shift."
+          }
+        ],
+        "returns": "number"
+      }
+    ],
+    "examples": [{
+      "id": "bit-examples",
+      "title": "Examples",
+      "content": [
+        "-- Get 16 high-order bits from a 32-bit integer (we use the return value from os.time()), hex-encode and print those bits",
+        "local x = os.time()",
+        "x = bit.lshift(x, 16)",
+        "local hex_str = bit.tohex(x, 4)",
+        "log.info(hex_str)"
+      ]
+    }]
+
+  },
+  {
+    "id":"client",
+    "title": "client",
+    "description": "Functions to control execution and extract information surrounding the current client/VU.<br/> See also the <a href=\"#test\">test module</a> to access test-wide settings and data.",
+    "apis": [
+      { "id": "client-get_id",
+        "name": "get_id",
+        "longName": "get_id()",
+        "description": "Get the ID of the client/VU who calls this function. The client/VU ID is essentially just the number of the client/VU out of all the clients/VUs running in the current load generator instance – i.e. in the current user scenario on the current load generator host. For example, you might have a test with 3 clients/VUs running user scenario X from Ashburn, Virginia, and 4 clients running the same scenario but from Dublin, Ireland. The clients/VUs in Ashburn will have the IDs 1, 2 and 3 and the clients in Dublin will have the IDs 1, 2, 3 and 4.",
+        "returns": "number or (nil, error message)",
+        "examples": [{
+          "content": [
+            "-- Have only client #1 add an entry to the log",
+            "-- This can be very useful if you run a load test with 1,000 simulated clients and",
+            "-- want to avoid getting your log swamped with 1,000 copies of the same log message",
+            "if client.get_id() == 1 then log.info(\"Hello world!\") end"
+          ]
+        }]
+      },
+      { "id": "client-get_load_generator_id",
+        "name": "get_load_generator_id",
+        "longName": "get_load_generator_id()",
+        "description": "Get the ID of the load generator where this client/VU is running. The load generator ID number is an integer that is unique for every running instance of our load generator application that is assigned to the current load test. The total number of running load generator instances is determined by several factors: the amount of simulated clients in the test, the number of geographic locations the test is run from, the number of unique user scenarios in the test, and the number of source IP addresses the test has been configured to use. The load generator ID is useful together with the client.get_id() function as a way of getting a test-wide, unique ID for a client (see 3.2. Client/VU module examples for an example).",
+        "returns": "number or (nil, error message)",
+        "examples": [{
+          "content": [
+            "-- Get ID of client",
+            "local client_id = client.get_id()",
+            "-- Get ID of load generator",
+            "local loadgen_id = client.get_load_generator_id()",
+            "-- Create a test-wide, unique client ID from the above two IDs",
+            "local unique_client_id = loadgen_id * 1000000 + client_id"
+          ]
+        }]
+      },
+      { "id": "client-get_repetition",
+        "name": "get_repetition",
+        "longName": "get_repetition()",
+        "description": "Get the current repetition (load script iteration) number of the client/VU that calls the function.",
+        "returns": "number or (nil, error message)",
+        "examples": [{
+          "content": [
+            "-- Get ID of client",
+            "local client_id = client.get_id()",
+            "-- Get ID of load generator",
+            "local loadgen_id = client.get_load_generator_id()",
+            "-- Create a test-wide, unique client ID from the above two IDs",
+            "local unique_client_id = loadgen_id * 1000000 + client_id",
+            "local client_repetition = client.get_repetition()",
+            "log.info(unique_client_id..\" has run the script \"..client_repetition..\" times\")"
+          ]
+        }]
+      },
+      { "id": "client-get_sleep_time",
+        "name": "get_sleep_time",
+        "longName": "get_sleep_time()",
+        "description": "Get the total amount of time (in seconds) the client/VU has spent sleeping up until now.<br/><i>[Note: during a script validation, all sleep operations are ignored in order to speed up the validation procedure.]</i>",
+        "returns": "number or (nil, error message)",
+        "examples": [{
+          "content": [
+            "..",
+            "client.sleep(0.5)",
+            "..",
+            "client.sleep(0.5)",
+            "local total_time = client.get_time_since_start()",
+            "local sleep_time = client.get_sleep_time()",
+            "local execution_time = total_time - sleep_time",
+            "log.info(\"Total time: \"..total_time..\" Execution time: \"..execution_time);"
+          ]
+        }]
+      },
+      { "id": "client-get_source_ip",
+        "name": "get_source_ip",
+        "longName": "get_source_ip()",
+        "description": "Get the source IP address this client/VU is using.",
+        "returns": "string or (nil, error message)",
+        "examples": [{
+          "content": [
+            "log.info(\"IP \"..client.get_source_ip())"
+          ]
+        }]
+      },
+      { "id": "client-get_time_since_start",
+        "name": "get_time_since_start",
+        "longName": "get_time_since_start()",
+        "description": "Get the time elapsed (in seconds) since this client/VU was started.",
+        "returns": "number or (nil, error message)",
+        "examples": [{
+          "content": [
+            "..",
+            "client.sleep(0.5)",
+            "..",
+            "client.sleep(0.5)",
+            "local total_time = client.get_time_since_start()",
+            "local sleep_time = client.get_sleep_time()",
+            "local execution_time = total_time - sleep_time",
+            "log.info(\"Total time: \"..total_time..\" Execution time: \"..execution_time);"
+          ]
+        }]
+      },
+      { "id": "client-get_user_scenario_name",
+        "name": "get_user_scenario_name",
+        "longName": "get_user_scenario_name()",
+        "description": "Get the name of the user scenario the client/VU is executing.",
+        "returns": "string or (nil, error message)"
+      },
+      { "id": "client-sleep",
+        "name": "sleep",
+        "longName": "sleep(interval, [unit])",
+        "description": "Pause client execution for interval * (1/unit) seconds.<br/><i>[Note: during a script validation, all sleep operations are ignored in order to speed up the validation procedure.]</i>",
+        "parameters": [
+          {
+            "name": "intervalx",
+            "type": "",
+            "description": "The interval of unit time to sleep for."
+          },
+          {
+            "name": "unit",
+            "type": "",
+            "description": "The unit of time to use. The default value is 1 (second)."
+          }
+        ],
+        "returns": "true or (nil, error message)",
+        "examples": [{
+          "content": [
+            "-- Sleep client script for specified time",
+            "client.sleep(2.5) -- Sleep for 2.5 seconds",
+            "client.sleep(0.5)",
+            "client.sleep(1, 1000) -- Sleep for 1 millisecond",
+            "client.sleep(0.001) -- also sleep for 1 millisecond"
+          ]
+        }]
+      }
+    ]
+  },
+  {
+      "id":"datastore",
+      "title": "datastore",
+      "description": "The Datastore modules provides functionality to interact with uploaded data stores (CSV files), allowing easy data parameterization in load scripts. The load script writer creates a named data store in the Load Impact user scenario editor interface, then uploads a text data file, in CSV format. The text data file should consist of a number of rows, where each row contains one or more column fields, separated by an arbitrary separator string (or character). The load script writer is then able to use the functions in this module to access the data store, retrieving individual rows from it. The rows retrieved will be returned as Lua tables.",
+      "apis": [
+        { "id": "datastore-open",
+          "name": "open",
+          "longName": "open(name)",
+          "description": "Initialize a data store object inside the load script. This function returns a data store object whose member functions can be used to access the rows of data in the data store.",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "string",
+              "description": "The name of the data store we want to initialize. Currently, only one data store per user scenario is allowed, and the data store opened through the use of datastore.open() must be the one associated with the particular user scenario that is running."
+            }
+          ],
+          "returns": "<a href=\"#datastore-datastore\">datastore.datastore</a> <em>or</em> (nil, error message)"
+        }
+      ],
+      "notes": [
+        "For more examples on how to use data stores, see our FAQ section: <a href=\"http://support.loadimpact.com/knowledgebase/articles/174258-how-do-i-use-parameterized-data-data-stores\">How do I use parameterized data?</a>"
+      ],
+      "classes": [
+        { "id": "datastore-datastore",
+          "name": "datastore",
+          "longName": "datastore",
+          "description": "The Datastore object represents a named data store. The load cript writer can use member functions of the Datastore object to query the data store, or to retrieve data rows from it.",
+          "apis": [
+            { "id": "datastore-datastore-get",
+              "name": "get",
+              "longName": "get(index)",
+              "description": "Returns a specific row from the data store object. The data store object must first have been initialized through the use of <a href=\"#datastore-open\">datastore.open</a>.",
+              "parameters": [
+                {
+                  "name": "index",
+                  "type": "number",
+                  "description": "The index of the row to retrieve from the data store."
+                }
+              ],
+              "returns": "table or (nil, error message)",
+              "examples": [{
+                "content": [
+                  "-- Initialize the data store named \"my data store\"",
+                  "local ds = datastore.open(\"my data store\")",
+                  "-- Fetch row #43 from the data store",
+                  "local row = ds:get(43)",
+                  "local first_column = row[1]",
+                  "local second_column = row[2]"
+                ]
+              }]
+            },
+            { "id": "datastore-datastore-get_length",
+              "name": "get_length",
+              "longName": "get_length()",
+              "description": "Returns the number of rows in the data store. Before using get_length(), the data store object must first have been initialized through the use of <a href=\"#datastore-open\">datastore.open</a>.",
+              "returns": "number or (nil, error message)",
+              "examples": [{
+                "content": [
+                  "-- Initialize the data store named \"my data store\"",
+                  "local ds = datastore.open(\"my data store\")",
+                  "for i=1,ds:get_length() do",
+                  "  local row = ds:get(i)",
+                  "  local first_column = row[1]",
+                  "  ....",
+                  "end"
+                ]
+              }]
+            },
+            { "id": "datastore-datastore-get_random",
+              "name": "get_random",
+              "longName": "get_random(unique)",
+              "description": "Returns a random row of data from the data store object. The optional parameter unique is a boolean that defaults to false, and which causes rows to only be returned once. I.e. repeated calls to get_random() with the unique parameter set to true will never return the same row from the data store more than once. Before using get_random(), the data store object must first have been initialized through the use of <a href=\"#datastore-open\">datastore.open</a>. [Note that the unique parameter only makes rows unique within the same client execution context. I.e. client #1 and client #2 may get the same data if they both call get_random() using the unique flag.]",
+              "parameters": [
+                {
+                  "name": "unique",
+                  "type": "boolean",
+                  "description": "Controls whether the function should return unique rows or not. Defaults to false."
+                }
+              ],
+              "returns": "table or (nil, error message)",
+              "examples": [{
+                "content": [
+                  "-- Initialize the data store named \"my data store\"",
+                  "local ds = datastore.open(\"my data store\")",
+                  "-- Fetch row #43 from the data store",
+                  "local row = ds:get_random()",
+                  "local first_column = row[1]",
+                  "local second_column = row[2]"
+                ]
+              }]
+            }
+          ]
+        }
+
+      ]
+  },
+
+  {
+    "id": "html",
+    "title": "html",
+    "description": "The HTML module provides functions to make the interaction with HTML and its DOM easier, specifically forms.",
+    "apis": [
+      { "id": "html-build_form_request",
+        "name": "build_form_request",
+        "longName": "build_form_request(selector, html, url, [fields, ][request_options])",
+        "description": "Builds a form request (to use with the <a href=\"#http-request_batch\">http.request_batch</a> related APIs) by parsing form fields from an HTML document and replacing certain fields with data passed in by the user.",
+        "parameters": [
+          {
+            "name": "selector",
+            "type": "string",
+            "description": "CSS query to run against DOM."
+          },
+          {
+            "name": "html",
+            "type": "string",
+            "description": "HTML whose DOM to query against."
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "description": "URL of the HTML document."
+          },
+          {
+            "name": "fields",
+            "type": "table",
+            "description": "Table with form fields you wish to override or insert."
+          },
+          {
+            "name": "request_options",
+            "type": "table",
+            "description": "Table with extra http.request params."
+          }
+        ],
+        "returns": "table or (nil, error message)"
+      },
+      { "id": "html-build_form_request_from_response",
+        "name": "build_form_request_from_response",
+        "longName": "build_form_request_from_response(selector, response, [fields, ][request_options])",
+        "description": "Builds a form request (to use with the <a href=\"#http-request_batch\">http.request_batch</a> related APIs) by parsing form fields from an HTML document and replacing certain fields with data passed in by the user.",
+        "parameters": [
+          {
+            "name": "selector",
+            "type": "string",
+            "description": "CSS query to run against DOM."
+          },
+          {
+            "name": "response",
+            "type": "<a href=\"#http-response\">http.response</a>",
+            "description": "<a href=\"#http-response\">http.response</a> whose body to run CSS query against."
+          },
+          {
+            "name": "fields",
+            "type": "table",
+            "description": "Table with form fields you wish to override or insert."
+          },
+          {
+            "name": "request_options",
+            "type": "table",
+            "description": "Table with extra http.request params."
+          }
+        ],
+        "returns": "table or (nil, error message)",
+        "examples": [{
+          "content": [
+            "-- Request a sign in page",
+            "local response = http.request({\"GET\", \"http://example.com/signin\", response_body_bytes=1000000})",
+            "-- Submit sign in form, setting username and password (overriding any default form field values)",
+            "response = http.request_batch({",
+            "  html.build_form_request_from_response(\"#my-form-id\", response, {username=\"test\", password=\"1234\"}, {response_body_bytes=1000000})",
+            "})",
+            "-- Make sure sign in is successful by looking for special string",
+            "if string.find(response[1].body, \"signed in as 'test'\") then",
+            "    log.info(\"Success!\")",
+            "else",
+            "   log.error(\"Failed to sign in!\")",
+            "end"
+          ]
+        }]
+      },
+      { "id": "html-css_query",
+        "name": "css_query",
+        "longName": "css_query(selector, html or response, [options])",
+        "description": "Extracts HTML/XML node based on CSS selector.",
+        "parameters": [
+          {
+            "name": "selector",
+            "type": "string",
+            "description": "CSS query to run against DOM."
+          },
+          {
+            "name": "html or response",
+            "type": "string or <a href=\"#http-response\">http.response</a>",
+            "description": "HTML or <a href=\"#http-response\">http.response</a> whose DOM to run CSS query against."
+          },
+          {
+            "name": "options",
+            "type": "table",
+            "description": "Option flags, like whether to return a single (first) node or an iterator function to iterate over all matching nodes. Note that options are passed to this function as a table like so: { html.CSS_QUERY_SINGLE_MATCH }"
+          }
+        ],
+        "returns": "iterator function of <a href=\"#html-node\">html.node</a> <em>or</em> <a href=\"#html-node\">html.node</a> <em>or</em> (nil, error message)",
+        "examples": [{
+          "content": [
+            "-- Request a page",
+            "local response = http.request({\"GET\", \"http://example.com/\", response_body_bytes=1000000})",
+            "-- Query the HTML DOM for matching anchor elements and print href attribute",
+            "for n in html.css_query(\"nav a[lang^='en']\", response) do",
+            "    log.info(n.attributes['href'])",
+            "end"
+          ]
+        }]
+      },
+      { "id": "html-extract_form",
+        "name": "extract_form",
+        "longName": "extract_form(selector, html or response)",
+        "description": "Extract HTML form fields of form matched by specified CSS query. Return a table of form fields.",
+        "parameters": [
+          {
+            "name": "selector",
+            "type": "string",
+            "description": "CSS query to run against DOM."
+          },
+          {
+            "name": "html or response",
+            "type": "string or <a href=\"#http-response\">http.response</a>",
+            "description": "HTML or <a href=\"#http-response\">http.response</a> whose DOM to run CSS query against."
+          }
+        ],
+        "returns": "table or (nil, error message)",
+        "examples": [{
+          "content": [
+            "-- Request a sign in page",
+            "local response = http.request({\"GET\", \"http://example.com/signin\", response_body_bytes=1000000})",
+            "-- Extract a form and submit it (equivalent but longer version of example 5a above)",
+            "local form_fields = html.extract_form(\"#my-form-id\", response, {username=\"test\", password=\"1234\"})",
+            "response = http.request_batch({",
+            "    { \"POST\", \"http://example.com/signin\", headers={[\"Content-Type\"]=\"application/x-www-form-urlencoded\"} data=url.build_query_string(form_fields), response_body_bytes=1000000 }",
+            "})",
+            "-- Make sure sign in is successful by looking for special string",
+            "if string.find(response[1].body, \"signed in as 'test'\") then",
+            "    log.info(\"Success!\")",
+            "else",
+            "   log.error(\"Failed to sign in!\")",
+            "end"
+          ]
+        }]
+      },
+      { "id": "html-parse",
+        "name": "parse",
+        "longName": "html.parse(html or response)",
+        "description": "Parse provided HTML and return a document object.",
+        "parameters": [
+          {
+            "name": "html or response",
+            "type": "string or <a href=\"#http-response\">http.response</a>",
+            "description": "HTML to parse."
+          }
+        ],
+        "returns": "<a href=\"#html-document\">html.document</a> or (nil, error message)",
+        "examples": [{
+          "content": [
+            "-- Request a page",
+            "local response = http.request({\"GET\", \"http://example.com/\", response_body_bytes=1000000})",
+            "-- Parse the HTML into an html.document",
+            "local doc = html.parse(response)",
+            "-- Print all footer links",
+            "for n in doc:xpath_query(\"//footer/ul/li/a\") do",
+            "    log.info(n.attributes[\"href\"])",
+            "end"
+          ]
+        }]
+      }
+    ],
+    "classes": [
+      { "id": "html-document",
+        "name": "document",
+        "longName": "document",
+        "description": "alias of <a href=\"#xml-document\">xml.document</a>"
+      },
+      { "id": "html-node",
+        "name": "node",
+        "longName": "node",
+        "description": "alias of <a href=\"#xml-document\">xml.node</a>"
+      }
+    ],
+    "enums": [
+      { "id": "html-CSS_QUERY_SINGLE_MATCH",
+        "name": "CSS_QUERY_SINGLE_MATCH",
+        "longName": "CSS_QUERY_SINGLE_MATCH",
+        "description": "Flag to use with <a href=\"#html-css_query\">html.css_query</a> to limit return to a single xml.node instead of an iterator function."
+      }
+    ]
+  },
+  {
+    "id": "http",
+    "title": "http",
+    "description": "This module provides the core functionality of generating outbound HTTP requests and making HTTP responses available to the script writer for optional further processing.",
+    "apis": [
+      {
+        "id": "http-delete",
+        "name": "delete",
+        "longName": "delete(url, [ip, ][headers, ][auto_redirect, ][auto_decompress, ][response_body_bytes, ][report_results])",
+        "description": "Send an HTTP DELETE request and wait for a response from the remote server. This function is blocking and will only return once the transfer has completed. This is a wrapper function around <a href=\"#http-request\">http.request</a>",
+        "parameters": [
+          {
+            "name": "url",
+            "type": "string",
+            "description": "The URL for the resource we are requesting."
+          },
+          {
+            "name": "ip",
+            "type": "string",
+            "description": "IP to connect to. This allows the script writer to bypass DNS lookups for individual requests. It offers the same functionality as <a href=\"#util-dns_remap\">util.dns_remap</a> but with more fine-grained control."
+          },
+          {
+            "name": "headers",
+            "type": "table",
+            "description": "A table of custom HTTP headers to send along with the request."
+          },
+          {
+            "name": "auto_redirect",
+            "type": "boolean",
+            "description": "If set to true, redirects will be handled automatically (the client will follow them). If set to false, any redirect will result in the completion of this request, which means that any subsequent requests that follow the redirect path have to be issued by the script programmer through new http.request() calls. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "auto_decompress",
+            "type": "boolean",
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+          },
+          {
+            "name": "response_body_bytes",
+            "type": "number",
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+          },
+          {
+            "name": "report_results",
+            "type": "boolean",
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+          }
+        ],
+        "returns": "<a href=\"#http-response\">http.response</a> <em>or</em> (nil, error message)",
+        "examples": [
+          {
+            "content": [
+              "http.delete(\"https://some.domain.com/api\")",
+              "// --or",
+              "http.delete({",
+              "  url=\"https://some.domain.com/api\",",
+              "  response_body_bytes=1000000",
+              "})"
+            ]
+          }
+        ]
+
+      },
+      {
+        "id": "http-get",
+        "name": "get",
+        "longName": "get(url, [ip, ][headers, ][auto_redirect, ][auto_decompress, ][response_body_bytes, ][report_results])",
+        "description": "Send an HTTP GET request and wait for a response from the remote server. This function is blocking and will only return once the transfer has completed. This is a wrapper function around <a href=\"#http-request\">http.request</a>",
+        "parameters": [
+          {
+            "name": "url",
+            "type": "string",
+            "description": "The URL for the resource we are requesting."
+          },
+          {
+            "name": "ip",
+            "type": "string",
+            "description": "IP to connect to. This allows the script writer to bypass DNS lookups for individual requests. It offers the same functionality as <a href=\"#util-dns_remap\">util.dns_remap</a> but with more fine-grained control."
+          },
+          {
+            "name": "headers",
+            "type": "table",
+            "description": "A table of custom HTTP headers to send along with the request."
+          },
+          {
+            "name": "auto_redirect",
+            "type": "boolean",
+            "description": "If set to true, redirects will be handled automatically (the client will follow them). If set to false, any redirect will result in the completion of this request, which means that any subsequent requests that follow the redirect path have to be issued by the script programmer through new http.request() calls. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "auto_decompress",
+            "type": "boolean",
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+          },
+          {
+            "name": "response_body_bytes",
+            "type": "number",
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+          },
+          {
+            "name": "report_results",
+            "type": "boolean",
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+          }
+        ],
+        "returns": "<a href=\"#http-response\">http.response</a> <em>or</em> (nil, error message)",
+        "examples": [
+          {
+            "content": [
+              "-- Request a sign in page",
+              "local response = http.get(\"http://example.com/signin\")",
+              "--or",
+              "local response = http.get({",
+              "  url=\"http://example.com/signin\",",
+              "  response_body_bytes=50000",
+              "})"
+            ]
+          }
+        ]
+
+      },
+      {
+        "id": "http-head",
+        "name": "head",
+        "longName": "head(url, [ip, ][headers, ][auto_redirect, ][auto_decompress, ][response_body_bytes, ][report_results])",
+        "description": "Send an HTTP HEAD request and wait for a response from the remote server. This function is blocking and will only return once the transfer has completed. This is a wrapper function around <a href=\"#http-request\">http.request</a>",
+        "parameters": [
+          {
+            "name": "url",
+            "type": "string",
+            "description": "The URL for the resource we are requesting."
+          },
+          {
+            "name": "ip",
+            "type": "string",
+            "description": "IP to connect to. This allows the script writer to bypass DNS lookups for individual requests. It offers the same functionality as <a href=\"#util-dns_remap\">util.dns_remap</a> but with more fine-grained control."
+          },
+          {
+            "name": "headers",
+            "type": "table",
+            "description": "A table of custom HTTP headers to send along with the request."
+          },
+          {
+            "name": "auto_redirect",
+            "type": "boolean",
+            "description": "If set to true, redirects will be handled automatically (the client will follow them). If set to false, any redirect will result in the completion of this request, which means that any subsequent requests that follow the redirect path have to be issued by the script programmer through new http.request() calls. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "auto_decompress",
+            "type": "boolean",
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+          },
+          {
+            "name": "response_body_bytes",
+            "type": "number",
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+          },
+          {
+            "name": "report_results",
+            "type": "boolean",
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+          }
+        ],
+        "returns": "<a href=\"#http-response\">http.response</a> <em>or</em> (nil, error message)"
+      },
+      {
+        "id": "http-options",
+        "name": "options",
+        "longName": "options(url, [ip, ][headers, ][auto_redirect, ][auto_decompress, ][response_body_bytes, ][report_results])",
+        "description": "Send an HTTP OPTIONS request and wait for a response from the remote server. This function is blocking and will only return once the transfer has completed. This is a wrapper function around <a href=\"#http-request\">http.request</a>",
+        "parameters": [
+          {
+            "name": "url",
+            "type": "string",
+            "description": "The URL for the resource we are requesting."
+          },
+          {
+            "name": "ip",
+            "type": "string",
+            "description": "IP to connect to. This allows the script writer to bypass DNS lookups for individual requests. It offers the same functionality as <a href=\"#util-dns_remap\">util.dns_remap</a> but with more fine-grained control."
+          },
+          {
+            "name": "headers",
+            "type": "table",
+            "description": "A table of custom HTTP headers to send along with the request."
+          },
+          {
+            "name": "auto_redirect",
+            "type": "boolean",
+            "description": "If set to true, redirects will be handled automatically (the client will follow them). If set to false, any redirect will result in the completion of this request, which means that any subsequent requests that follow the redirect path have to be issued by the script programmer through new http.request() calls. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "auto_decompress",
+            "type": "boolean",
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+          },
+          {
+            "name": "response_body_bytes",
+            "type": "number",
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+          },
+          {
+            "name": "report_results",
+            "type": "boolean",
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+          }
+        ],
+        "returns": "<a href=\"#http-response\">http.response</a> <em>or</em> (nil, error message)"
+      },
+      {
+        "id": "http-page_end",
+        "name": "page_end",
+        "longName": "page_end(name)",
+        "description": "Marks the end of measurement for a page metric with specified name (must match the name specified in a previous call to <a href=\"#http-page_start\">http.page_start</a>). This function is useless without its peer <a href=\"#http-page_start\">http.page_start</a> which marks where the page metric start measurement is made. Our proxy recorder, as well as out Google Chrome recorder extension, will automatically detect page boundaries during a recording and insert <a href=\"#http-page_start\">http.page_start</a> and <a href=\"#http-page_end\">http.page_end</a> calls in the appropriate places.",
+        "parameters": [
+          {
+            "name": "name",
+            "type": "string",
+            "description": "The name of the page (will be used as the result name on the test result page). Can be a maximum of 512 characters long."
+          }
+        ],
+        "examples": [
+          {
+            "content": [
+              "-- Log page metric",
+              "http.page_start(\"My page\")",
+              "responses = http.request_batch({",
+              "    { \"GET\", \"http://loadimpact.com/\" },",
+              "    { \"GET\", \"http://loadimpact.com/style1.css\" },",
+              "    { \"GET\", \"http://loadimpact.com/image1.jpg\" },",
+              "    { \"GET\", \"http://loadimpact.com/image2.jpg\" }",
+              "})",
+              "http.page_end(\"My page\")"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "http-page_start",
+        "name": "page_start",
+        "longName": "page_start(name)",
+        "description": "Marks the start of measurement for a page metric. This function is useless without its peer <a href=\"#http-page_end\">http.page_end</a> which marks where the page metric end measurement is made. Our proxy recorder, as well as out Google Chrome recorder extension, will automatically detect page boundaries during a recording and insert <a href=\"#http-page_start\">http.page_start</a> and <a href=\"#http-page_end\">http.page_end</a> calls in the appropriate places.",
+        "parameters": [
+          {
+            "name": "name",
+            "type": "string",
+            "description": "The name of the page (will be used as the result name on the test result page). Can be a maximum of 512 characters long."
+          }
+        ],
+        "examples": [
+          {
+            "content": [
+              "-- Log page metric",
+              "http.page_start(\"My page\")",
+              "responses = http.request_batch({",
+              "    { \"GET\", \"http://loadimpact.com/\" },",
+              "    { \"GET\", \"http://loadimpact.com/style1.css\" },",
+              "    { \"GET\", \"http://loadimpact.com/image1.jpg\" },",
+              "    { \"GET\", \"http://loadimpact.com/image2.jpg\" }",
+              "})",
+              "http.page_end(\"My page\")"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "http-patch",
+        "name": "patch",
+        "longName": "patch(url, [ip, ][headers, ][auto_redirect, ][auto_decompress, ][response_body_bytes, ][report_results])",
+        "description": "Send an HTTP PATCH request and wait for a response from the remote server. This function is blocking and will only return once the transfer has completed. This is a wrapper function around <a href=\"#http-request\">http.request</a>",
+        "parameters": [
+          {
+            "name": "url",
+            "type": "string",
+            "description": "The URL for the resource we are requesting."
+          },
+          {
+            "name": "ip",
+            "type": "string",
+            "description": "IP to connect to. This allows the script writer to bypass DNS lookups for individual requests. It offers the same functionality as <a href=\"#util-dns_remap\">util.dns_remap</a> but with more fine-grained control."
+          },
+          {
+            "name": "headers",
+            "type": "table",
+            "description": "A table of custom HTTP headers to send along with the request."
+          },
+          {
+            "name": "data",
+            "type": "string",
+            "description": "The body data of the request. Only valid for \"POST/PUT\" requests, this parameter is ignored for other request types."
+          },
+          {
+            "name": "auto_redirect",
+            "type": "boolean",
+            "description": "If set to true, redirects will be handled automatically (the client will follow them). If set to false, any redirect will result in the completion of this request, which means that any subsequent requests that follow the redirect path have to be issued by the script programmer through new http.request() calls. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "auto_decompress",
+            "type": "boolean",
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+          },
+          {
+            "name": "response_body_bytes",
+            "type": "number",
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+          },
+          {
+            "name": "report_results",
+            "type": "boolean",
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+          }
+        ],
+        "returns": "<a href=\"#http-response\">http.response</a> <em>or</em> (nil, error message)"
+      },
+      {
+        "id": "http-post",
+        "name": "post",
+        "longName": "post(url, [ip, ][headers, ][data, ][auto_redirect, ][auto_decompress, ][response_body_bytes, ][base64_encoded_body, ][report_results])",
+        "description": "Send an HTTP POST request and wait for a response from the remote server. This function is blocking and will only return once the transfer has completed. This is a wrapper function around <a href=\"#http-request\">http.request</a>",
+        "parameters": [
+          {
+            "name": "url",
+            "type": "string",
+            "description": "The URL for the resource we are requesting."
+          },
+          {
+            "name": "ip",
+            "type": "string",
+            "description": "IP to connect to. This allows the script writer to bypass DNS lookups for individual requests. It offers the same functionality as <a href=\"#util-dns_remap\">util.dns_remap</a> but with more fine-grained control."
+          },
+          {
+            "name": "headers",
+            "type": "table",
+            "description": "A table of custom HTTP headers to send along with the request."
+          },
+          {
+            "name": "data",
+            "type": "string",
+            "description": "The body data of the request. Only valid for \"POST/PUT\" requests, this parameter is ignored for other request types."
+          },
+          {
+            "name": "auto_redirect",
+            "type": "boolean",
+            "description": "If set to true, redirects will be handled automatically (the client will follow them). If set to false, any redirect will result in the completion of this request, which means that any subsequent requests that follow the redirect path have to be issued by the script programmer through new http.request() calls. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "auto_decompress",
+            "type": "boolean",
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+          },
+          {
+            "name": "response_body_bytes",
+            "type": "number",
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+          },
+          {
+            "name": "base64_encoded_body",
+            "type": "boolean",
+            "description": "If set to true, indicates that the data parameter contains base64 encoded data."
+          },
+          {
+            "name": "report_results",
+            "type": "boolean",
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+          }
+        ],
+        "returns": "<a href=\"#http-response\">http.response</a> <em>or</em> (nil, error message)",
+        "examples": [
+          {
+            "content": [
+              "-- JSON encode a data structure",
+              "-- and send it as the body of a POST request",
+              "local json_string = json.stringify({ login_credentials = { username = \"joe\", password = \"secret\" } })",
+              "http.post(\"https://some.domain.com/login.php\", nil, nil, json_string)",
+              "// --or",
+              "http.post({",
+              "  url=\"https://some.domain.com/login.php\",",
+              "  data=json_string",
+              "})"
+            ]
+          }
+        ]
+
+      },
+      {
+        "id": "http-put",
+        "name": "put",
+        "longName": "put(url, [ip, ][headers, ][data, ][auto_redirect, ][auto_decompress, ][response_body_bytes, ][base64_encoded_body, ][report_results])",
+        "description": "Send an HTTP PUT request and wait for a response from the remote server. This function is blocking and will only return once the transfer has completed. This is a wrapper function around <a href=\"#http-request\">http.request</a>",
+        "parameters": [
+          {
+            "name": "url",
+            "type": "string",
+            "description": "The URL for the resource we are requesting."
+          },
+          {
+            "name": "ip",
+            "type": "string",
+            "description": "IP to connect to. This allows the script writer to bypass DNS lookups for individual requests. It offers the same functionality as <a href=\"#util-dns_remap\">util.dns_remap</a> but with more fine-grained control."
+          },
+          {
+            "name": "headers",
+            "type": "table",
+            "description": "A table of custom HTTP headers to send along with the request."
+          },
+          {
+            "name": "data",
+            "type": "string",
+            "description": "The body data of the request. Only valid for \"POST/PUT\" requests, this parameter is ignored for other request types."
+          },
+          {
+            "name": "auto_redirect",
+            "type": "boolean",
+            "description": "If set to true, redirects will be handled automatically (the client will follow them). If set to false, any redirect will result in the completion of this request, which means that any subsequent requests that follow the redirect path have to be issued by the script programmer through new http.request() calls. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "auto_decompress",
+            "type": "boolean",
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+          },
+          {
+            "name": "response_body_bytes",
+            "type": "number",
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+          },
+          {
+            "name": "base64_encoded_body",
+            "type": "boolean",
+            "description": "If set to true, indicates that the data parameter contains base64 encoded data."
+          },
+          {
+            "name": "report_results",
+            "type": "boolean",
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+          }
+        ],
+        "returns": "<a href=\"#http-response\">http.response</a> <em>or</em> (nil, error message)",
+        "examples": [
+          {
+            "content": [
+              "-- JSON encode a data structure",
+              "-- and send it as the body of a PUT request",
+              "local json_string = json.stringify({ login_credentials = { username = \"joe\", password = \"secret\" } })",
+              "http.put(\"https://some.domain.com/login.php\", nil, nil, json_string)",
+              "// --or",
+              "http.put({",
+              "  url=\"https://some.domain.com/login.php\",",
+              "  data=json_string",
+              "})"
+            ]
+          }
+        ]
+
+      },
+      {
+        "id": "http-request",
+        "name": "request",
+        "longName": "request(method, url, [ip, ][headers, ][data, ][auto_redirect, ][auto_decompress, ][response_body_bytes, ][base64_encoded_body, ][report_results])",
+        "description": "Send an HTTP request and wait for a response from the remote server. This function is blocking and will only return once the transfer has completed. This is a wrapper function around <a href=\"#http-request_batch\">http.request_batch</a>.",
+        "parameters": [
+          {
+            "name": "method",
+            "type": "string",
+            "description": "The HTTP request method to use when sending the request. Can be any of \"GET\", \"PATCH\", \"POST\", \"PUT\", \"HEAD\", \"DELETE\", \"OPTIONS\" or \"TRACE\"."
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "description": "The URL for the resource we are requesting."
+          },
+          {
+            "name": "ip",
+            "type": "string",
+            "description": "IP to connect to. This allows the script writer to bypass DNS lookups for individual requests. It offers the same functionality as <a href=\"#util-dns_remap\">util.dns_remap</a> but with more fine-grained control."
+          },
+          {
+            "name": "headers",
+            "type": "table",
+            "description": "A table of custom HTTP headers to send along with the request."
+          },
+          {
+            "name": "data",
+            "type": "string",
+            "description": "The body data of the request. Only valid for \"POST/PUT\" requests, this parameter is ignored for other request types."
+          },
+          {
+            "name": "auto_redirect",
+            "type": "boolean",
+            "description": "If set to true, redirects will be handled automatically (the client will follow them). If set to false, any redirect will result in the completion of this request, which means that any subsequent requests that follow the redirect path have to be issued by the script programmer through new http.request() calls. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "auto_decompress",
+            "type": "boolean",
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+          },
+          {
+            "name": "response_body_bytes",
+            "type": "number",
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+          },
+          {
+            "name": "base64_encoded_body",
+            "type": "boolean",
+            "description": "If set to true, indicates that the data parameter contains base64 encoded data."
+          },
+          {
+            "name": "report_results",
+            "type": "boolean",
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+          }
+        ],
+        "returns": "<a href=\"#http-response\">http.response</a> <em>or</em> (nil, error message)",
+        "examples": [
+          {
+            "content": [
+              "-- Make a a single HTTP request",
+              "response = http.request(\"GET\", \"http://loadimpact.com/\",",
+              "  nil,",
+              "  { [\"X-Myheader\"]=\"Something\"})",
+              "response = http.request({",
+              "  method=\"GET\",",
+              "  url=\"http://loadimpact.com/\",",
+              "  headers={ [\"X-Myheader\"]=\"Something\" } } )",
+              "-- An equivalent request could also be made using the shorthand http.get() function:",
+              "response = http.get({",
+              "  url=\"http://loadimpact.com/\",",
+              "  headers={ [\"X-Myheader\"]=\"Something\" } } )",
+              "-- Display some response data in the console log:",
+              "log.info(\"DNS lookup time: \" .. response.dns_lookup_time)"
+            ]
+          }
+        ]
+
+      },
+      {
+        "id": "http-request_batch",
+        "name": "request_batch",
+        "longName": "request_batch(requests)",
+        "description": "Performs a number of HTTP requests, using multiple concurrent TCP connections (when allowed to do so). This function is blocking and will only return once all transfers have been completed. This function, and its derivatives, supports both positional as well as named arguments when specifying individual request arguments, see the <a href=\"#http-examples\">http.examples</a> section for examples on usage.",
+        "parameters": [
+          {
+            "name": "requests",
+            "type": "table",
+            "description": "A table of requests to send. Each request item is by itself a table containing <a href=\"#http-request\">http.request</a> parameters for the request."
+          }
+        ],
+        "returns": "[<a href=\"#http-response\">http.response</a>] <em>or</em> (nil, error message)",
+        "examples": [
+          {
+            "content": [
+              "-- Execute a batch of HTTP requests, set special HTTP headers in some of them",
+              "responses = http.request_batch({",
+              "    { \"GET\", \"http://loadimpact.com/\", nil, { [\"X-Myheader\"]=\"Something\" } },",
+              "    { \"GET\", \"http://loadimpact.com/image1.jpg\" },",
+              "    { \"POST\", \"http://loadimpact.com/login_ajax.php\", nil, { [\"X-Anotherheader\"]=\"Something Else\" }, \"login=test&amp;password=test\" }",
+              " })",
+              "-- Using only positional arguments",
+              "responses = http.request_batch({",
+              "    { \"GET\", \"http://loadimpact.com/\", nil, { [\"X-Myheader\"]=\"Something\" }, nil, true, false, 1024, false },",
+              "    { \"POST\", \"http://loadimpact.com/login_ajax.php\", nil, { [\"X-Anotherheader\"]=\"Something Else\" }, \"login=test&amp;password=test\", true, false, 0, false }",
+              "})",
+              "-- Making the exact same requests using only named arguments",
+              "responses = http.request_batch({",
+              "    { method=\"GET\", url=\"http://loadimpact.com/\", headers={ [\"X-Myheader\"]=\"Something\" }, response_body_bytes=1024 },",
+              "    { method=\"POST\", url=\"http://loadimpact.com/login_ajax.php\", headers={ [\"X-Anotherheader\"]=\"Something Else\" }, data=\"login=test&amp;password=test\" }",
+              "})",
+              "-- Using mixed positional and named arguments",
+              "responses = http.request_batch({",
+              "    { \"GET\", \"http://loadimpact.com/\", headers={ [\"X-Myheader\"]=\"Something\" }, response_body_bytes=1024 },",
+              "    { \"POST\", \"http://loadimpact.com/login_ajax.php\", headers={ [\"X-Anotherheader\"]=\"Something Else\" }, data=\"login=test&amp;password=test\" }",
+              "})"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "http-set_max_connections",
+        "name": "set_max_connections",
+        "longName": "set_max_connections(max_connections, max_connections_per_host)",
+        "description": "Sets the maximum number of connections a single VU may have open at any one time.<br/>em:[Note that this function used to be called ua.set_max_connections() in API version 1.0.]",
+        "parameters": [
+          {
+            "name": "max_connections",
+            "type": "number",
+            "description": "The total maximum number of concurrent TCP connections that the VU may open during script execution."
+          },
+          {
+            "name": "max_connections_per_host",
+            "type": "number",
+            "description": "The total maximum number of concurrent TCP connections that the VU may open to a specific host during script execution."
+          }
+        ],
+        "returns": "true or (nil, error message)",
+        "examples": [
+          {
+            "content": [
+              "-- IE6 uses max 34 connections in total, and max 2 per host (*)",
+              "http.set_max_connections(34, 2)",
+              "-- Use the IE6 User-Agent string",
+              "http.set_user_agent_string(\"Mozilla/5.0 (compatible; MSIE 6.0; Windows NT 5.1)\")&lt;/i&gt;",
+              "--",
+              "-- Any HTTP requests made from here on in the script will now emulate IE6"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "http-set_option",
+        "name": "set_option",
+        "longName": "set_option(name, value)",
+        "description": "Set a default behavior for HTTP requests sent after the call was made to this function. An option default value set using this function can usually be overridden in an individual HTTP request, when necessary.<br/><em>[Note: this is not to be confused with the <a href=\"#http-options\">http.options</a> function, which is used to transmit HTTP OPTIONS requests.]</em>",
+        "parameters": [
+          {
+            "name": "name",
+            "type": "string",
+            "description": "The name of the option to set default value of."
+          },
+          {
+            "name": "value",
+            "type": "mixed",
+            "description": "The default option value to set."
+          }
+        ],
+        "options": [
+          {
+            "name": "Options",
+            "parameters": [
+              {
+                "name": "auto_cookie_handling",
+                "type": "boolean",
+                "description": "Turn automatic cookie handling on and off."
+              },
+              {
+                "name": "follow_redirects",
+                "type": "boolean",
+                "description": "Turn automatic redirect handling on and off globally (can also be controlled per request)."
+              },
+              {
+                "name": "redirect_post_302",
+                "type": "boolean",
+                "description": "Whether 302 responses for a POST request should be redirected as POST (true) or GET (false)."
+              },
+              {
+                "name": "force_sslv2",
+                "type": "boolean",
+                "description": "Force SSL connections to use SSLv2."
+              },
+              {
+                "name": "force_sslv3",
+                "type": "boolean",
+                "description": "Force SSL connections to use SSLv3."
+              },
+              {
+                "name": "force_tlsv1",
+                "type": "boolean",
+                "description": "Force SSL connections to use TLS (the most appropriate version will be selected based on server support)."
+              },
+              {
+                "name": "force_tlsv1_0",
+                "type": "boolean",
+                "description": "Force SSL connections to use TLSv1.0."
+              },
+              {
+                "name": "force_tlsv1_1",
+                "type": "boolean",
+                "description": "Force SSL connections to use TLSv1.1."
+              },
+              {
+                "name": "force_tlsv1_2",
+                "type": "boolean",
+                "description": "Force SSL connections to use TLSv1.2."
+              }
+            ]
+          }
+        ],
+        "returns": "true or (nil, error message)"
+      },
+      {
+        "id": "http-set_user_agent_string",
+        "name": "set_user_agent_string",
+        "longName": "set_user_agent_string(ua_string)",
+        "description": "Sets the User-Agent HTTP header used by the VU in all following HTTP requests.<br/>The default user agent string looks as follows:<br/>LoadImpactRload/X.Y.Z (Load Impact; http://loadimpact.com);<br/>em:[Note that this function used to be called ua.set_string() in API version 1.0.]",
+        "parameters": [
+          {
+            "name": "ua_string",
+            "type": "string",
+            "description": "The user agent string to send along with each following HTTP request as client identification."
+          }
+        ],
+        "returns": "true or (nil, error message)",
+        "examples": [
+          {
+            "content": [
+              "-- IE6 uses max 34 connections in total, and max 2 per host (*)",
+              "http.set_max_connections(34, 2)",
+              "-- Use the IE6 User-Agent string",
+              "http.set_user_agent_string(\"Mozilla/5.0 (compatible; MSIE 6.0; Windows NT 5.1)\")",
+              "-- Any HTTP requests made from here on in the script will now emulate IE6"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "http-trace",
+        "name": "trace",
+        "longName": "trace(url, [ip, ][headers, ][auto_redirect, ][auto_decompress, ][response_body_bytes, ][report_results])",
+        "description": "Send an HTTP TRACE request and wait for a response from the remote server. This function is blocking and will only return once the transfer has completed. This is a wrapper function around <a href=\"#http-request\">http.request</a>",
+        "parameters": [
+          {
+            "name": "url",
+            "type": "string",
+            "description": "The URL for the resource we are requesting."
+          },
+          {
+            "name": "ip",
+            "type": "string",
+            "description": "IP to connect to. This allows the script writer to bypass DNS lookups for individual requests. It offers the same functionality as <a href=\"#util-dns_remap\">util.dns_remap</a> but with more fine-grained control."
+          },
+          {
+            "name": "headers",
+            "type": "table",
+            "description": "A table of custom HTTP headers to send along with the request."
+          },
+          {
+            "name": "auto_redirect",
+            "type": "boolean",
+            "description": "If set to true, redirects will be handled automatically (the client will follow them). If set to false, any redirect will result in the completion of this request, which means that any subsequent requests that follow the redirect path have to be issued by the script programmer through new http.request() calls. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "auto_decompress",
+            "type": "boolean",
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+          },
+          {
+            "name": "response_body_bytes",
+            "type": "number",
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+          },
+          {
+            "name": "report_results",
+            "type": "boolean",
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+          }
+        ],
+        "returns": "<a href=\"#http-response\">http.response</a> or (nil, error message)"
+      }
+    ],
+    "classes": [
+      {
+        "id": "http-response",
+        "name": "response",
+        "longName": "response",
+        "description": "The http.response class is a data structure that contains information about a completed HTTP transaction.",
+        "attributes": [
+          {
+            "name": "body",
+            "type": "string",
+            "description": "The HTTP response body."
+          },
+          {
+            "name": "body_size",
+            "type": "number",
+            "description": "The size of the HTTP response body in bytes."
+          },
+          {
+            "name": "compressed",
+            "type": "boolean",
+            "description": "A boolean that indicates whether the body of the HTTP response was compressed or not."
+          },
+          {
+            "name": "compressed_body_size",
+            "type": "number",
+            "description": "The size of the HTTP response body, in bytes, if the HTTP response body was compressed, otherwise -1."
+          },
+          {
+            "name": "connect_time",
+            "type": "number",
+            "description": "The time, in decimal seconds, it took to establish a TCP connection with the server."
+          },
+          {
+            "name": "content_type",
+            "type": "string",
+            "description": "The content type reported by the server in the HTTP response."
+          },
+          {
+            "name": "cookies",
+            "type": "table",
+            "description": "The cookies sent by the server in the HTTP response."
+          },
+          {
+            "name": "dns_lookup_time",
+            "type": "number",
+            "description": "The time, in decimal seconds, it took to perform a hostname->IP lookup for the server host."
+          },
+          {
+            "name": "download_time",
+            "type": "number",
+            "description": "The time, in decimal seconds, it took from reading the first byte of data and until the entire resource was downloaded from the server."
+          },
+          {
+            "name": "header_size",
+            "type": "number",
+            "description": "The size of the HTTP response headers in bytes."
+          },
+          {
+            "name": "headers",
+            "type": "table",
+            "description": "The HTTP response headers."
+          },
+          {
+            "name": "ip",
+            "type": "string",
+            "description": "The IP address of the host to which the request was sent."
+          },
+          {
+            "name": "redirect_time",
+            "type": "number",
+            "description": "The time, in decimal seconds, that was spent redirecting. This is the roundtrip time (RTT) for the HTTP messages. Excluding DNS lookup time and TCP connection time."
+          },
+          {
+            "name": "request_method",
+            "type": "string",
+            "description": "The HTTP request method used by the original HTTP request that led to this HTTP response – can be \"GET\", \"PATCH\", \"POST\", \"PUT\", \"HEAD\", \"DELETE\", \"OPTIONS\", \"TRACE\"."
+          },
+          {
+            "name": "request_size",
+            "type": "number",
+            "description": "The size of the sent HTTP request in bytes."
+          },
+          {
+            "name": "request_url",
+            "type": "string",
+            "description": "The URL of the original HTTP request that led to this response."
+          },
+          {
+            "name": "ssl_handshake_time",
+            "type": "number",
+            "description": "The time, in decimal seconds, it took to perform the SSL handshake for an HTTPS request."
+          },
+          {
+            "name": "status_code",
+            "type": "number",
+            "description": "The HTTP return status code."
+          },
+          {
+            "name": "status_msg",
+            "type": "string",
+            "description": "The HTTP return status line."
+          },
+          {
+            "name": "time_to_first_byte",
+            "type": "number",
+            "description": "The time, in decimal seconds, until the first byte of the HTTP response was received from the server."
+          },
+          {
+            "name": "total_load_time",
+            "type": "number",
+            "description": "The total load time for this resource."
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "description": "The effective URL that the initial request ended up pointing to, after redirects."
+          }
+        ],
+        "examples": [
+          {
+            "content": [
+              "local response = http.get({",
+              "  url=\"http://api.loadimpact.com/xxxx\"",
+              "  response_body_bytes=50000",
+              "})",
+              "if response.status_code ~= 200 then",
+              "  log.error('login API error')",
+              "  test.abort()",
+              "end",
+              "log.info(\"load time \"..response.total_load_time)",
+              "local data = json.parse(response.body)"
+            ]
+          }
+        ]
+      }
+    ]
+
+  },
+
+  {
+    "id": "json",
+    "title": "json",
+    "description": "This module provides functionality for encoding to and decoding from JSON format. Important to note is that this module currently doesn't support null values.",
+    "apis": [
+      {
+        "id": "json-parse",
+        "name": "parse",
+        "longName": "parse(string)",
+        "description": "This function takes a JSON string, parses it, and returns a matching Lua table with all the JSON objects.",
+        "parameters": [
+          {
+            "name": "string",
+            "type": "string",
+            "description": "JSON string to parse into Lua data structure."
+          }
+        ],
+        "returns": "table or (nil, error message)",
+        "examples": [{ "content": [
+          "-- Login via POST and parse the response",
+          "local response = http.request({\"POST\",",
+          "        \"https://api.xxx.com/login\",",
+          "        headers = {[\"Content-Type\"] = \"application/json\"},",
+          "        response_body_bytes=1000000})",
+          "local token = json.parse(response.body).token.value"
+        ]}]
+      },
+      {
+        "id": "json-stringify",
+        "name": "stringify",
+        "longName": "stringify(table)",
+        "description": "This function takes a Lua table and generates a JSON string from it.",
+        "parameters": [
+          {
+            "name": "table",
+            "type": "table",
+            "description": "Table to encode into a JSON string."
+          }
+        ],
+        "returns": "table or (nil, error message)",
+        "examples": [
+          {
+            "content": [
+          "-- JSON encode a data structure and send it as the body of a POST request",
+          "local json_string = json.stringify({ login_credentials = { username = \"joe\", password = \"secret\" } })",
+          "http.post({",
+          "  url=\"https://some.domain.com/login.php\",",
+          "  data=json_string",
+          "})"
+        ]}]
+      }
+    ]
+
+
+  },
+
+  {
+    "id": "log",
+    "title": "log",
+    "description": "Functions to log things during a test run. Logged messages will end up on the test result page during a load test or shown validation window during validation runs.",
+    "apis": [
+      {
+        "id": "log-debug",
+        "name": "debug",
+        "longName": "debug(message)",
+        "parameters": [
+          {
+            "name": "message",
+            "type": "mixed",
+            "description": "The message you want to log"
+          }
+        ]
+      },
+      {
+        "id": "log-error",
+        "name": "error",
+        "longName": "error(message)",
+        "description": "Logs a text message that is stored in the results database and which will be displayed in the logging section of the test results page, or in the output window during a validation run. The background color is slightly different for debug messages, making them easy to separate from normal \"info\" messages.",
+        "parameters": [
+          {
+            "name": "message",
+            "type": "mixed",
+            "description": "The message you want to log"
+          }
+        ]
+      },
+      {
+        "id": "log-info",
+        "name": "info",
+        "longName": "info(message)",
+        "parameters": [
+          {
+            "name": "message",
+            "type": "mixed",
+            "description": "The message you want to log"
+          }
+        ]
+      },
+      {
+        "id": "log-log",
+        "name": "log",
+        "longName": "log(message)",
+        "parameters": [
+          {
+            "name": "level",
+            "type": "string",
+            "description": "Log level"
+          },
+          {
+            "name": "message",
+            "type": "mixed",
+            "description": "The message you want to log"
+          }
+        ]
+      }
+    ],
+    "enums": [
+      {
+        "id": "log-DEBUG",
+        "name": "DEBUG",
+        "longName": "DEBUG",
+        "description": "Debug log level"
+      },
+      {
+        "id": "log-ERROR",
+        "name": "ERROR",
+        "longName": "ERROR",
+        "description": "Error log level"
+      },
+      {
+        "id": "log-INFO",
+        "name": "INFO",
+        "longName": "INFO",
+        "description": "Info log level"
+      }
+    ],
+
+    "examples": [
+      {
+
+        "id": "log-examples",
+        "title": "Examples",
+        "content": [
+          "-- Add an entry to the log",
+          "log.info(\"Hello world!\")",
+          "",
+          "-- Have only client #1 add an entry to the log",
+          "-- This can be very useful if you run a load test with 1,000 simulated clients and",
+          "-- want to avoid getting your log swamped with 1,000 copies of the same log message",
+          "if client.get_id() == 1 then log.info(\"Hello world!\") end"
+        ]
+      }
+    ]
+
+  },
+
+  {
+    "id": "regex",
+    "title": "regex",
+    "description": "This module provides powerful regular expression (regex) functionality based on the widely used <a href=\"http://www.pcre.org/\">PCRE</a> C library.",
+    "apis": [
+      {
+        "id": "regex-compile",
+        "name": "compile",
+        "longName": "compile(pattern, [flags])",
+        "description": "Initialize a <a href=\"#regex-compiledregex\">regex.compiledregex</a>, pre-compiling the provided pattern. The returned object's member functions can be used to perform regex searches/matches on a subject and then access matched strings.",
+        "parameters": [
+          {
+            "name": "pattern",
+            "type": "string",
+            "description": "The regex pattern to compile and base future matches on."
+          },
+          {
+            "name": "flags",
+            "type": "table",
+            "description": "Optional table of flags."
+          }
+        ],
+        "returns": "<a href=\"#regex-compiledregex\">regex.compiledregex</a> <em>or</em> (nil, error message)"
+      },
+      {
+        "id": "regex-gmatch",
+        "name": "gmatch",
+        "longName": "gmatch(pattern, subject, [flags, ]offset)",
+        "description": "This function creates and returns a generator-style iterator function that is meant to be used in a for-loop to find all pattern matches in the specified subject.",
+        "parameters": [
+          {
+            "name": "pattern",
+            "type": "string",
+            "description": "The regex pattern to look for."
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "description": "The subject to search for occurrences of pattern."
+          },
+          {
+            "name": "flags",
+            "type": "table",
+            "description": "Optional table of flags."
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "description": "Numeric offset in subject where to start looking for pattern. Defaults to 1."
+          }
+        ],
+        "returns": "iterator function of <a href=\"#regex-match\">regex.match</a>"
+      },
+      {
+        "id": "regex-match",
+        "name": "match",
+        "longName": "match(pattern, subject, [flags, ]offset)",
+        "description": "This function looks for the first occurrence of pattern in the specified subject.",
+        "parameters": [
+          {
+            "name": "pattern",
+            "type": "string",
+            "description": "The regex pattern to look for."
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "description": "The subject to search for occurrences of pattern."
+          },
+          {
+            "name": "flags",
+            "type": "table",
+            "description": "Optional table of flags."
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "description": "Numeric offset in subject where to start looking for pattern. Defaults to 1."
+          }
+        ],
+        "returns": "<a href=\"#regex-match\">regex.match</a> <em>or</em> (nil, error message)"
+      },
+      {
+        "id": "regex-sub",
+        "name": "sub",
+        "longName": "sub(pattern, replacement, subject, [flags])",
+        "description": "This function searches the subject for pattern matches and replaces them with the replacement string. The replacement string can contain references to capture groups using the format \"1\" (sans quotes).",
+        "parameters": [
+          {
+            "name": "pattern",
+            "type": "string",
+            "description": "The regex pattern to look for."
+          },
+          {
+            "name": "replacement",
+            "type": "string",
+            "description": "The replacement string, can contain capture group references."
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "description": "The subject to search for occurrences of pattern."
+          },
+          {
+            "name": "flags",
+            "type": "table",
+            "description": "Optional table of flags."
+          }
+        ],
+        "returns": "<a href=\"#regex-match\">regex.match</a> <em>or</em> (nil, error message)"
+      }
+    ],
+    "classes": [
+      {
+        "id": "regex-compiledregex",
+        "name": "compiledregex",
+        "longName": "compiledregex",
+        "description": "A wrapper around a compiled regex pattern. Provides the same match and gmatch methods as those available as freestanding functions in the <a href=\"regex\">regex</a> module, the difference being that the compiledregex pre-compiled the pattern and thus speeds up repeated uses of the same pattern.",
+        "apis": [
+          {
+            "id": "regex-compiledregex-captures",
+            "name": "captures",
+            "longName": "captures()",
+            "description": "Returns number of possible captures in regex pattern.",
+            "returns": "number or (nil, error messages)"
+          },
+          {
+            "id": "regex-compiledregex-gmatch",
+            "name": "gmatch",
+            "longName": "gmatch(subject, offset)",
+            "description": "This method creates and returns an iterator function that is meant to be used in a for-loop to find all pattern matches in the specified subject.",
+            "parameters": [
+              {
+                "name": "subject",
+                "type": "string",
+                "description": "The subject to search for occurrences of pattern."
+              },
+              {
+                "name": "offset",
+                "type": "number",
+                "description": "Numeric offset in subject where to start looking for pattern. Defaults to 1."
+              }
+            ],
+            "returns": "iterator function of <a href=\"#regex-match\">regex.match</a>"
+          },
+          {
+            "id": "regex-compiledregex-match",
+            "name": "match",
+            "longName": "match(subject, offset)",
+            "description": "This function looks for the first occurrence of pattern in the specified subject.",
+            "parameters": [
+              {
+                "name": "subject",
+                "type": "string",
+                "description": "The subject to search for occurrences of pattern."
+              },
+              {
+                "name": "offset",
+                "type": "number",
+                "description": "Numeric offset in subject where to start looking for pattern. Defaults to 1."
+              }
+            ],
+            "returns": "<a href=\"#regex-match\">regex.match</a> <em>or</em> (nil, error message)"
+          }
+        ]
+
+      },
+      {
+        "id": "regex-match-class",
+        "name": "match",
+        "longName": "match",
+        "description": "The regex match object represents the result of a regex match operation.",
+        "apis": [
+          {
+            "id": "regex-match-capture",
+            "name": "capture",
+            "longName": "capture(index or name)",
+            "description": "Returns captured string identified by capture index or name. Capture index 1 is the full match.",
+            "parameters": [
+              {
+                "name": "index or name",
+                "type": "number or string",
+                "description": "Either the index of a capture or the name if a named capture was specified in the pattern."
+              }
+            ],
+            "returns" : "string or (nil, error message)"
+          },
+          {
+            "id": "regex-match-capture_end",
+            "name": "capture_end",
+            "longName": "capture_end(index)",
+            "description": "Returns end offset of specified capture in subject.",
+            "parameters": [
+              {
+                "name": "index",
+                "type": "number",
+                "description": "The index of capture for which to get end offset."
+              }
+            ],
+            "returns" : "number or (nil, error message)"
+
+          },
+          {
+            "id": "regex-match-capture_start",
+            "name": "capture_start",
+            "longName": "capture_start(index)",
+            "description": "Returns start offset of specified capture in subject.",
+            "parameters": [
+              {
+                "name": "index",
+                "type": "number",
+                "description": "The index of capture for which to get start offset."
+              }
+            ],
+            "returns" : "number or (nil, error message)"
+
+          },
+          {
+            "id": "regex-match-captured",
+            "name": "captured",
+            "longName": "captured()",
+            "description": "Returns number of captures in match.",
+            "returns" : "number or (nil, error message)"
+          }
+        ]
+      }
+    ],
+
+    "enums": [
+      {
+        "id": "regex-DOTALL",
+        "name": "DOTALL",
+        "longName": "DOTALL",
+        "description": "Set to make \"dot\" (.) match newlines. For use with <a href=\"#regex-compile\">regex.compile</a>, <a href=\"#regex-gmatch\">regex.gmatch</a>, <a href=\"#regex-match\">regex.match</a>, <a href=\"#regex-sub\">regex.sub</a>, <a href=\"#regex-compiledregex-gmatch\">regex.compiledregex.gmatch</a> and <a href=\"#regex-compiledregex-match\">regex.compiledregex.match</a>"
+      },
+      {
+        "id": "regex-I",
+        "name": "I",
+        "longName": "I",
+        "description": "alias of <a href=\"#regex-IGNORECASE\">regex.IGNORECASE</a>"
+      },
+      {
+        "id": "regex-IGNORECASE",
+        "name": "IGNORECASE",
+        "longName": "IGNORECASE",
+        "description": "Treat subject in a case insensitive manner. For use with <a href=\"#regex-compile\">regex.compile</a>, <a href=\"#regex-gmatch\">regex.gmatch</a>, <a href=\"#regex-match\">regex.match</a>, <a href=\"#regex-sub\">regex.sub</a>, <a href=\"#regex-compiledregex-gmatch\">regex.compiledregex.gmatch</a> and <a href=\"#regex-compiledregex-match\">regex.compiledregex.match</a>."
+      },
+      {
+        "id": "regex-J",
+        "name": "J",
+        "longName": "J",
+        "description": "alias of <a href=\"#regex-JAVASCRIPT_COMPAT\">regex.JAVASCRIPT_COMPAT</a>"
+      },
+      {
+        "id": "regex-JAVASCRIPT_COMPAT",
+        "name": "JAVASCRIPT_COMPAT",
+        "longName": "JAVASCRIPT_COMPAT",
+        "description": "Enable compatibility with Javascript regex behavior, rather than being Perl compatible. For use with <a href=\"#regex-compile\">regex.compile</a>, <a href=\"#regex-gmatch\">regex.gmatch</a>, <a href=\"#regex-match\">regex.match</a>, <a href=\"#regex-sub\">regex.sub</a>, <a href=\"#regex-compiledregex-gmatch\">regex.compiledregex.gmatch</a> and <a href=\"#regex-compiledregex-match\">regex.compiledregex.match</a>."
+      },
+      {
+        "id": "regex-M",
+        "name": "M",
+        "longName": "M",
+        "description": "alias of <a href=\"#regex-MULTILINE\">regex.MULTILINE</a>"
+      },
+      {
+        "id": "regex-MULTILINE",
+        "name": "MULTILINE",
+        "longName": "MULTILINE",
+        "description": "By default, for the purposes of matching \"start of line\" and \"end of line\", the subject string is treated as consisting of a single line of characters, even if it actually contains newlines. The \"start of line\" metacharacter (^) matches only at the start of the string, and the \"end of line\" metacharacter ($) matches only at the end of the string. When <a href=\"#regex-MULTILINE\">regex.MULTILINE</a> is set, the \"start of line\" and \"end of line\" constructs match immediately following or immediately before internal newlines in the subject string, respectively, as well as at the very start and end. For use with <a href=\"#regex-compile\">regex.compile</a>, <a href=\"#regex-gmatch\">regex.gmatch</a>, <a href=\"#regex-match\">regex.match</a>, <a href=\"#regex-sub\">regex.sub</a>, <a href=\"#regex-compiledregex-gmatch\">regex.compiledregex.gmatch</a> and <a href=\"#regex-compiledregex-match\">regex.compiledregex.match</a>"
+      },
+      {
+        "id": "regex-S",
+        "name": "S",
+        "longName": "S",
+        "description": "alias of <a href=\"#regex-DOTALL\">regex.DOTALL</a>"
+      }
+    ],
+
+    "examples": [
+      {
+        "id": "regex-examples",
+        "title": "Examples",
+        "content": [
+          "-- Find and print first word",
+          "local m = regex.match(\"\\w+\", \"hello world\")",
+          "print(m:capture(1))",
+          "",
+          "-- List of data items to match",
+          "local items = {",
+          "    \"aabbcc\",",
+          "    \"123456\",",
+          "    \"ddeeff\",",
+          "    \"123456\",",
+          "    \"gghhii\",",
+          "    \"123456\",",
+          "}",
+          "-- Compile a regex pattern for repeated use, to match data items containing only characters of the alphabet",
+          "local r = regex.compile(\"[a-z]+\")",
+          "-- Loop over data items, printing the ones that match",
+          "for i, d in ipairs(items) do",
+          "    if r:match(d) then",
+          "        print(d)",
+          "    end",
+          "end",
+          "",
+          "-- HTML body",
+          "local body = [[",
+          "    <html>",
+          "        <head>",
+          "            <title>Example</title>",
+          "        <head>",
+          "        <body>",
+          "            <input name=\"firstname\" value=\"john\">",
+          "            <input name=\"surname\" value=\"doe\">",
+          "        </body>",
+          "    </html>",
+          "]]",
+          "-- Compile regex before use",
+          "local r = regex.compile(\"<([a-z]+)[^>]*>\")",
+          "-- Find all elements",
+          "for m in r:gmatch(body) do",
+          "    -- Print tag name",
+          "    print(m:capture(2))",
+          "end"
+        ]
+      }
+    ],
+    "notes": [
+      "See <a href=\"http://www.pcre.org/pcre.txt\">PCRE</a> for more detailed information of the regular expression engine behind the API."
+    ]
+  },
+  {
+    "id": "result",
+    "title": "result",
+    "description": "The result module contains functionality for controlling the aggregation and storage of metric data. For example, the <a href=\"#result-custom_metric\">result.custom_metric</a> function allows you to store arbitrary result metrics during a load test.",
+    "apis": [
+      {
+        "id": "result-custom_metric",
+        "name": "custom_metric",
+        "longName": "custom_metric(name, value)",
+        "description": "This function allows you to store your own, custom result metrics. You can create any metric you like, give it a name, and use this function to store result values throughout your load test. Custom metrics are graphable on the test result page, and are included in CSV load test result exports, just like our standard metrics.",
+        "parameters": [
+          {
+            "name": "name",
+            "type": "string",
+            "description": "The name of your custom metric. This is used to aggregate all data points belonging to the same metric. It is case-sensitive and can be a maximum of 512 characters long."
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "description": "An individual data point of the metric. Store as many of these as you like, but be aware that results are aggregated every 3 seconds. This means that if you store e.g. 5 individual data points per second, totaling 15 data points in 3 seconds, the system will compute aggregate values from your 15 data points and store those values as the data point for the 3-second sampling interval."
+          }
+        ],
+        "returns": "true or (nil, error message)",
+        "examples": [
+          {
+            "content": [
+              "-- Measure the time it takes to complete several HTTP requests,",
+              "-- and then store that time as the result metric \"total_load_time\"",
+              "start_time = util.time()",
+              "http.request_batch({",
+              "    { \"GET\", \"http://loadimpact.com\", nil, { [\"X-Myheader\"]=\"Something\" } },\t{ \"GET\", \"http://loadimpact.com/image1.jpg\" },",
+              "    { \"POST\", \"http://loadimpact.com/login_ajax.php\", nil, { [\"X-Anotherheader\"]=\"Something Else\" }, \"login=test&amp;password=test\" }",
+              " })",
+              "end_time = util.time()",
+              "result.custom_metric(\"total_load_time\", end_time - start_time)"
+            ]
+          }
+        ]
+      }
+
+    ]
+  },
+  {
+    "id": "test",
+    "title": "test",
+    "description": "The test module provides APIs to access test-wide settings and data.<br/>See also the <a href=\"#client\">client module</a> to extract information surrounding the current client/VU.",
+    "apis": [
+      {
+        "id": "test-abort",
+        "name": "abort",
+        "longName": "abort()",
+        "description": "Aborts the currently running load test.",
+        "examples": [{
+          "content": [
+            "local response = http.get({",
+            "  url=\"http://api.loadimpact.com/xxxx\",",
+            "  response_body_bytes=50000",
+            "})",
+            "if response.status_code ~= 200 then",
+            "  log.error('response API failed')",
+            "  test.abort()",
+            "end",
+            "local data = json.parse(response.body)"
+          ]
+        }]
+      },
+      {
+        "id": "test-get_name",
+        "name": "get_name",
+        "longName": "get_name()",
+        "description": "Get the name of the currently running load test.",
+        "returns": "string or (nil, error message)",
+        "examples": [{
+          "content": [
+            "local test_name = test.get_name()",
+            "-- use test_name convention for your scenario",
+            "local is_smoke_test = string.match(test_name, \"SMOKE\")",
+            "if is_smoke_test then",
+            "  log.info('running a SMOKE test')",
+            "else",
+            "  log.info('running a normal test')",
+            "end"
+          ]
+        }]
+      },
+      {
+        "id": "test-get_clients",
+        "name": "get_clients",
+        "longName": "get_clients()",
+        "returns": "number",
+        "examples": [{
+          "content": [
+            "local response = http.get({",
+            "  url=\"http://api.loadimpact.com/xxxx\",",
+            "  response_body_bytes=50000",
+            "})",
+            "local threshold_x = 0.5",
+            "if test.get_clients() > 1000 then",
+            "   -- increase threshold when large load",
+            "   threshold_x = 0.9",
+            "end",
+            "if response.total_load_time > threshold_x then",
+            "  log.error('threshold X fails')",
+            "  test.abort()",
+            "end"
+          ]
+        }]
+      },
+      {
+        "id": "test-get_time_since_start",
+        "name": "get_time_since_start",
+        "longName": "get_time_since_start()",
+        "description": "Get the elapsed time since the load test was started.",
+        "returns": "string or (nil, error message)",
+        "examples": [{
+          "content": [
+            "..",
+            "..",
+            "if test.get_time_since_start() > 180 then",
+            "  -- do something after 3 minutes since the load test was started",
+            "..",
+            "end"
+          ]
+        }]
+      },
+      {
+        "id": "test-is_validation",
+        "name": "is_validation()",
+        "longName": "is_validation",
+        "description": "Check whether this load script is being run in a validation or load test.",
+        "returns": "boolean or (nil, error message)",
+        "examples": [{
+          "content": [
+            "if test.is_validation() then",
+            "  log.info('running a validation')",
+            "end"
+          ]
+        }]
+      }
+    ]
+
+  },
+  {
+    "id": "url",
+    "title": "url",
+    "description": "Functions to compose and decompose URLs and other miscellaneous URL functionality.",
+    "apis": [
+      {
+        "id": "url-build",
+        "name": "build",
+        "longName": "build(components)",
+        "description": "Assemble a URL string from a table of URL components, e.g. created with url.parse().",
+        "parameters": [
+          {
+            "name": "components",
+            "type": "table",
+            "description": "Table with URL components, see <a href=\"#url-parse\">url.parse</a> for list of valid components."
+          }
+        ],
+        "returns": "string or (nil, error message)"
+      },
+      {
+        "id": "url-build_query_string",
+        "name": "build_query_string",
+        "longName": "url.build_query_string(query_params)",
+        "description": "Assemble table of query string parameters into a string.",
+        "parameters": [
+          {
+            "name": "query_params",
+            "type": "table",
+            "description": "Table with query parameters."
+          }
+        ],
+        "returns": "string or (nil, error message)"
+      },
+      {
+        "id": "url-escape",
+        "name": "escape",
+        "longName": "escape(url_string, [safe_chars])",
+        "description": "Percent-encodes all characters in a string (that are not reserved) into an escaped hexadecimal representation.",
+        "parameters": [
+          {
+            "name": "url_string",
+            "type": "string",
+            "description": "The string to encode."
+          },
+          {
+            "name": "safe_chars",
+            "type": "string",
+            "description": "A string with characters to exclude from encoding."
+          }
+        ],
+        "returns": "string or (nil, error message)"
+      },
+      {
+        "id": "url-join",
+        "name": "join",
+        "longName": "join(base_url, second_url)",
+        "description": "Compose a single URL by joining a base URL and a second URL.",
+        "parameters": [
+          {
+            "name": "base_url",
+            "type": "string",
+            "description": "The base URL."
+          },
+          {
+            "name": "second_url",
+            "type": "string",
+            "description": "The URL to join with the base URL."
+          }
+        ],
+        "returns": "string or (nil, error message)"
+      },
+      {
+        "id": "url-normalize",
+        "name": "normalize",
+        "longName": "normalize(url_string)",
+        "description": "Normalize a URL, preserving the semantics.",
+        "parameters": [
+          {
+            "name": "url_string",
+            "type": "string",
+            "description": "The string to normalize."
+          }
+        ],
+        "returns": "string or (nil, error message)"
+      },
+      {
+        "id": "url-parse",
+        "name": "parse",
+        "longName": "parse(url_string)",
+        "description": "Parse URL into key/value table.",
+        "parameters": [
+          {
+            "name": "url_string",
+            "type": "string",
+            "description": "The string to be parsed."
+          }
+        ],
+        "returns": "table or (nil, error message)"
+      },
+      {
+        "id": "url-unescape",
+        "name": "unescape",
+        "longName": "unescape(url_string)",
+        "description": "Decodes all percent-encoded characters into their unescaped representations.",
+        "parameters": [
+          {
+            "name": "url_string",
+            "type": "string",
+            "description": "The string to decode."
+          }
+        ],
+        "returns": "string or (nil, error message)"
+      }
+
+    ],
+    "examples": [{
+      "id": "url-examples",
+      "title": "Examples",
+      "content": [
+        "-- Parse a URL, print parts of the URL, and then reassemble it",
+        "local parsed = url.parse(\"http://example.com/\")",
+        "print(parsed.schema)",
+        "print(parsed.host)",
+        "print(parsed.path)",
+        "local urlstr = url.build(parsed)",
+        "",
+        "-- Join a base URL with a path",
+        "local result = url.join(\"http://example.com/\", \"/a/b/../c\")"
+      ]
+    }]
+
+
+  },
+
+  {
+    "id": "util",
+    "title": "util",
+    "description": "The Util module contains miscellaneous functionality that can be useful in a load script, such as time functions etc.",
+    "apis": [
+      {
+        "id": "util-dns_remap",
+        "name": "dns_remap",
+        "longName": "dns_remap(host, ip)",
+        "description": "Adds an entry to a hostname lookup table that will be checked before querying DNS when the client needs to lookup a hostname. If any other port than the default port 80 is targeted the port number has to be specified. For https this means the port 443 must be specified.<br>Note: this function used to be called dns.remap() in API version 1.0",
+        "parameters": [
+          {
+            "name": "host{:port}",
+            "type": "string",
+            "description": "The hostname and optionally port number to store a lookup table entry for."
+          },
+          {
+            "name": "ip",
+            "type": "string",
+            "description": "The IP address that the hostname should resolve to."
+          }
+        ],
+        "returns": "true or (nil, error message)"
+      },
+      {
+        "id": "util-pprint",
+        "name": "pprint",
+        "longName": "pprint(...)",
+        "description": "The pprint() function pretty-prints the passed arguments using print() (same as log.debug()).",
+        "parameters": [
+          {
+            "name": "..",
+            "type": "mixed",
+            "description": "All arguments passed will be pretty-printed one after the other."
+          }
+        ]
+      },
+      {
+        "id": "util-time",
+        "name": "time",
+        "longName": "time()",
+        "description": "The time() function returns the number of seconds since Unix EPOCH as a number value, which means it includes fractional seconds with fairly high (microsecond-) precision. If you are a programmer with previous Lua experience, you can think of util.time() as a higher-precision version of the Lua standard os.time() function (which is also available, by the way – see <a href=\"#os-time\">os.time</a>).",
+        "returns": "number"
+      },
+      {
+        "id": "util-unique",
+        "name": "unique",
+        "longName": "unique()",
+        "description": "Returns a string guaranteed to be unique across all executing client threads in a load test. The string is based on current time, client ID and client source IP",
+        "returns": "string"
+      }
+    ],
+    "examples": [
+      {
+        "id": "util-examples",
+        "title": "Examples",
+        "content": [
+          "-- Make sure clients that load things from loadimpact.com (port 80 and 443) connects to 123.123.123.123",
+          "util.dns_remap(\"loadimpact.com\", \"123.123.123.123\")",
+          "util.dns_remap(\"loadimpact.com:443\", \"123.123.123.123\")",
+          "",
+          "-- Find out how long it took to perform a sequence of requests",
+          "starttime = util.time()",
+          "http.request_batch({",
+          "    { \"GET\", \"http://loadimpact.com\" },",
+          "    { \"GET\", \"http://loadimpact.com/image1.jpg\" },",
+          "    { \"GET\", \"http://loadimpact.com/image2.jpg\" },",
+          "})",
+          " http.request_batch({",
+          "    { \"GET\", \"http://loadimpact.com/page2/image3.jpg\" },",
+          "    { \"GET\", \"http://loadimpact.com/page2/image4.jpg\" },",
+          "})",
+          "endtime = util.time()",
+          "elapsed_time = endtime - starttime"
+        ]
+      }
+    ]
+
+
+  },
+  {
+    "id": "xml",
+    "title": "xml",
+    "description": "This module provides functionality to parse and query XML.",
+    "apis": [
+      {
+        "id": "xml-parse",
+        "name": "parse",
+        "longName": "parse(xml_string)",
+        "description": "Parse a string of XML data.",
+        "parameters": [
+          {
+            "name": "xml_string",
+            "type": "string",
+            "description": "The string of XML to parse."
+          }
+        ],
+        "returns": "<a href=\"#xml-document\">xml.document</a> <em>or</em> (nil, error message)"
+      }
+    ],
+    "classes": [
+      {
+        "id": "xml-document",
+        "name": "document",
+        "longName": "document",
+        "description": "The XML document object represents a parsed XML document and provides methods to traverse and inspect the document tree.",
+        "apis": [
+          {
+            "id": "xml-document-xpath_query",
+            "name": "xpath_query",
+            "longName": "xpath_query(query, [options])",
+            "description": "Executes an XPath query against the XML document tree returning an interator function to iterate over the matched nodes. There is also an option to only return the first matched node, in which case it will be the return value of the method instead of an iterator function.",
+            "parameters": [
+              {
+                "name": "query",
+                "type": "string",
+                "description": "The XPath query to execute."
+              },
+              {
+                "name": "options",
+                "type": "table",
+                "description": "Table with options."
+              }
+            ],
+            "returns": "iterator function of <a href=\"#xml-node\">xml.node</a> <em>or</em> <a href=\"#xml-node\">xml.node</a> <em>or</em> (nil, error message)"
+          }
+        ]
+      },
+      {
+        "id": "xml-node",
+        "name": "node",
+        "longName": "node",
+        "description": "The XML node object represents a single node in a parsed XML document and provides methods to retrieve its name, attributes, content and children.",
+        "attributes": [
+          {
+            "name": "attributes",
+            "type": "table",
+            "description": "Retrieve the tag attributes of the node."
+          },
+          {
+            "name": "children",
+            "type": "table",
+            "description": "Retrieve a table with the child nodes of the node."
+          },
+          {
+            "name": "content",
+            "type": "string",
+            "description": "Retrieve the text content of the node."
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "description": "Retrieve the tag name of the node."
+          }
+        ]
+      }
+    ],
+    "enums": [
+      { "id": "xml-XPATH_QUERY_SINGLE_MATCH",
+        "name": "XPATH_QUERY_SINGLE_MATCH",
+        "longName": "XPATH_QUERY_SINGLE_MATCH",
+        "description": "Flag to use with <a href=\"#xml-document-xpath_query\">xml.document.xpath_query</a> to limit return to a single xml.node instead of an iterator function."
+      }
+    ],
+    "examples": [
+      {
+        "id": "xml-examples",
+        "title": "Examples",
+        "content": [
+          "-- Parse XML document",
+          "local doc = xml.parse(\"<?xml version=\"1.0\"><books><book><author>Load Impact</author><title>Load testing with XML</title></book></books></xml>\")",
+          "-- Print title of all books",
+          "for node in doc:xpath_query(\"//books/book/title\") do",
+          "    print(node.content)",
+          "end",
+          "",
+          "-- Parse XML document",
+          "local doc = xml.parse(\"<?xml version=\"1.0\"><books><book><author>Load Impact</author><title>Load testing with XML</title></book></books></xml>\")",
+          "-- Print title of first matched book",
+          "local node = doc:xpath_query(\"//books/book/title\", { xml.XPATH_QUERY_SINGLE_MATCH })",
+          "print(node.content)",
+          "",
+          "-- Parse XML document",
+          "local doc = xml.parse(\"<?xml version=\"1.0\"><books><book><author>Load Impact</author><title>Load testing with XML</title></book></books></xml>\")",
+          "-- Print title of all books",
+          "for node in doc.root.children do",
+          "    for node2 in node.children do",
+          "        if node2.name == \"title\" then",
+          "            print(node2.content)",
+          "        end",
+          "    end",
+          "end"
+        ]
+      }
+    ]
+  }
+
+  ],
+
+  "LuaModules": {
+
+    "id": "stdlib",
+    "name": "Standard Library",
+    "description": "The following standard Lua library modules and functions are also available for use in load scripts.",
+    "modules": [
+      {
+        "id": "stdlib-global",
+        "name": "Global",
+        "moduleName": "",
+        "apis": [
+          { "name": "assert", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-assert" },
+          { "name": "error", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-error" },
+          { "name": "getmetatable", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-getmetatable" },
+          { "name": "ipairs", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-ipairs" },
+          { "name": "next", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-next" },
+          { "name": "pairs", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-pairs" },
+          { "name": "pcall", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-pcall" },
+          { "name": "print", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-print" },
+          { "name": "select", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-select" },
+          { "name": "setmetatable", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-setmetatable" },
+          { "name": "tonumber", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-tonumber" },
+          { "name": "tostring", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-tostring" },
+          { "name": "type", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-type" },
+          { "name": "unpack", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-unpack" },
+          { "name": "xpcall", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-xpcall" }
+        ]
+      },
+      {
+        "id": "stdlib-math",
+        "name": "Math",
+        "moduleName": "math",
+        "apis": [
+          { "name": "abs", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.abs" },
+          { "name": "acos", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.acos" },
+          { "name": "asin", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.asin"  },
+          { "name": "atan", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.atan" },
+          { "name": "atan2", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.atan2" },
+          { "name": "ceil", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.ceil" },
+          { "name": "cos", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.cos" },
+          { "name": "cosh", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.cosh" },
+          { "name": "deg", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.deg" },
+          { "name": "exp", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.exp" },
+          { "name": "floor", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.floor" },
+          { "name": "fmod", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.fmod" },
+          { "name": "frexp", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.frexp" },
+          { "name": "huge", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.huge" },
+          { "name": "ldexp", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.ldexp" },
+          { "name": "log", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.log" },
+          { "name": "log10", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.log10" },
+          { "name": "max", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.max" },
+          { "name": "min", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.min" },
+          { "name": "modf", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.modf" },
+          { "name": "pi", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.pi" },
+          { "name": "pow", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.pow" },
+          { "name": "rad", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.rad" },
+          { "name": "random", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.random" },
+          { "name": "randomseed", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.randomseed" },
+          { "name": "sin", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.sin" },
+          { "name": "sinh", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.sinh" },
+          { "name": "sqrt", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.sqrt" },
+          { "name": "tan", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.tan" },
+          { "name": "tanh", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-math.tanh" }
+        ]
+      },
+      {
+        "id": "stdlib-os",
+        "name": "OS",
+        "moduleName": "os",
+        "apis": [
+          { "name": "clock", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-os.clock" },
+          { "name": "date", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-os.date" },
+          { "name": "difftime", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-os.difftime" },
+          { "name": "time", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-os.time" }
+        ]
+      },
+      {
+        "id": "stdlib-string",
+        "name": "String",
+        "moduleName": "string",
+        "apis": [
+          { "name": "byte", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-string.byte" },
+          { "name": "char", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-string.char" },
+          { "name": "find", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-string.find" },
+          { "name": "format", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-string.format" },
+          { "name": "gmatch", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-string.gmatch" },
+          { "name": "gsub", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-string.gsub" },
+          { "name": "len", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-string.len" },
+          { "name": "lower", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-string.lower" },
+          { "name": "match", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-string.match" },
+          { "name": "rep", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-string.rep" },
+          { "name": "reverse", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-string.reverse" },
+          { "name": "sub", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-string.sub" },
+          { "name": "upper", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-string.upper" }
+        ]
+      },
+      {
+        "id": "stdlib-table",
+        "name": "Table",
+        "moduleName": "table",
+        "apis": [
+          { "name": "concat", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-table.concat" },
+          { "name": "insert", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-table.insert" },
+          { "name": "maxn", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-table.maxn" },
+          { "name": "remove", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-table.remove" },
+          { "name": "sort", "link": "http://www.lua.org/manual/5.1/manual.html#pdf-table.sort" }
+        ]
+      }
+    ]
+  }
+
+}
