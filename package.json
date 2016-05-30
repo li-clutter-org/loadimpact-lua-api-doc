@@ -1,6 +1,6 @@
 {
-  "name": "Load Impact LUA API Doc",
-  "description": "",
+  "name": "loadimpact-lua-api-doc",
+  "description": "Load Impact LUA API Doc",
   "version": "0.0.1",
   "author": {
     "email": "support@loadimpact.com",
