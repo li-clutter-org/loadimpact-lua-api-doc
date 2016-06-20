@@ -1349,7 +1349,15 @@
             ]
           }
         ],
-        "returns": "true or (nil, error message)"
+        "returns": "true or (nil, error message)",
+        "examples": [
+          {
+            "content": [
+              "-- Disable redirect handling for all the following requests",
+              "http.set_option(\"follow_redirects\", false)"
+            ]
+          }
+        ]
       },
       {
         "id": "http-set_user_agent_string",
@@ -2207,12 +2215,22 @@
             "description": "Table with URL components, see <a href=\"#url-parse\">url.parse</a> for list of valid components."
           }
         ],
-        "returns": "string or (nil, error message)"
+        "returns": "string or (nil, error message)",
+        "examples": [{
+          "content": [
+            "-- Parse a URL, print parts of the URL, and then reassemble it",
+            "local parsed = url.parse(\"http://example.com/\")",
+            "print(parsed.schema)",
+            "print(parsed.host)",
+            "print(parsed.path)",
+            "local urlstr = url.build(parsed)"
+          ]
+        }]
       },
       {
         "id": "url-build_query_string",
         "name": "build_query_string",
-        "longName": "url.build_query_string(query_params)",
+        "longName": "build_query_string(query_params)",
         "description": "Assemble table of query string parameters into a string.",
         "parameters": [
           {
@@ -2259,7 +2277,13 @@
             "description": "The URL to join with the base URL."
           }
         ],
-        "returns": "string or (nil, error message)"
+        "returns": "string or (nil, error message)",
+        "examples": [{
+          "content": [
+            "-- Join a base URL with a path",
+            "local result = url.join(\"http://example.com/\", \"/a/b/../c\")"
+          ]
+        }]
       },
       {
         "id": "url-normalize",
@@ -2287,7 +2311,15 @@
             "description": "The string to be parsed."
           }
         ],
-        "returns": "table or (nil, error message)"
+        "returns": "table or (nil, error message)",
+        "examples": [{
+          "content": [
+            "local parsed = url.parse(\"http://example.com/\")",
+            "print(parsed.schema)",
+            "print(parsed.host)",
+            "print(parsed.path)"
+          ]
+        }]
       },
       {
         "id": "url-unescape",
@@ -2304,22 +2336,7 @@
         "returns": "string or (nil, error message)"
       }
 
-    ],
-    "examples": [{
-      "id": "url-examples",
-      "title": "Examples",
-      "content": [
-        "-- Parse a URL, print parts of the URL, and then reassemble it",
-        "local parsed = url.parse(\"http://example.com/\")",
-        "print(parsed.schema)",
-        "print(parsed.host)",
-        "print(parsed.path)",
-        "local urlstr = url.build(parsed)",
-        "",
-        "-- Join a base URL with a path",
-        "local result = url.join(\"http://example.com/\", \"/a/b/../c\")"
-      ]
-    }]
+    ]
 
 
   },
