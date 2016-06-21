@@ -963,7 +963,7 @@
           {
             "name": "data",
             "type": "string",
-            "description": "The body data of the request. Only valid for \"POST/PUT\" requests, this parameter is ignored for other request types."
+            "description": "The body data of the request. Only valid for \"POST/PUT/PATCH\" requests, this parameter is ignored for other request types."
           },
           {
             "name": "auto_redirect",
@@ -1012,7 +1012,7 @@
           {
             "name": "data",
             "type": "string",
-            "description": "The body data of the request. Only valid for \"POST/PUT\" requests, this parameter is ignored for other request types."
+            "description": "The body data of the request. Only valid for \"POST/PUT/PATCH\" requests, this parameter is ignored for other request types."
           },
           {
             "name": "auto_redirect",
@@ -1082,7 +1082,7 @@
           {
             "name": "data",
             "type": "string",
-            "description": "The body data of the request. Only valid for \"POST/PUT\" requests, this parameter is ignored for other request types."
+            "description": "The body data of the request. Only valid for \"POST/PUT/PATCH\" requests, this parameter is ignored for other request types."
           },
           {
             "name": "auto_redirect",
@@ -1157,7 +1157,7 @@
           {
             "name": "data",
             "type": "string",
-            "description": "The body data of the request. Only valid for \"POST/PUT\" requests, this parameter is ignored for other request types."
+            "description": "The body data of the request. Only valid for \"POST/PUT/PATCH\" requests, this parameter is ignored for other request types."
           },
           {
             "name": "auto_redirect",
