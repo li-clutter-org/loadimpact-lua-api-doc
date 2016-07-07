@@ -709,17 +709,27 @@
           {
             "name": "auto_decompress",
             "type": "boolean",
-            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false. The default value can also be changed through the use of the http.set_option() functionality."
           },
           {
             "name": "response_body_bytes",
             "type": "number",
-            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0). The default value can also be changed through the use of the http.set_option() functionality."
           },
           {
             "name": "report_results",
             "type": "boolean",
-            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "connect_timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
           }
         ],
         "returns": "<a href=\"#http-response\">http.response</a> <em>or</em> (nil, error message)",
@@ -766,17 +776,27 @@
           {
             "name": "auto_decompress",
             "type": "boolean",
-            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false. The default value can also be changed through the use of the http.set_option() functionality."
           },
           {
             "name": "response_body_bytes",
             "type": "number",
-            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0). The default value can also be changed through the use of the http.set_option() functionality."
           },
           {
             "name": "report_results",
             "type": "boolean",
-            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "connect_timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
           }
         ],
         "returns": "<a href=\"#http-response\">http.response</a> <em>or</em> (nil, error message)",
@@ -824,17 +844,27 @@
           {
             "name": "auto_decompress",
             "type": "boolean",
-            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false. The default value can also be changed through the use of the http.set_option() functionality."
           },
           {
             "name": "response_body_bytes",
             "type": "number",
-            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0). The default value can also be changed through the use of the http.set_option() functionality."
           },
           {
             "name": "report_results",
             "type": "boolean",
-            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "connect_timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
           }
         ],
         "returns": "<a href=\"#http-response\">http.response</a> <em>or</em> (nil, error message)"
@@ -868,17 +898,27 @@
           {
             "name": "auto_decompress",
             "type": "boolean",
-            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false. The default value can also be changed through the use of the http.set_option() functionality."
           },
           {
             "name": "response_body_bytes",
             "type": "number",
-            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0). The default value can also be changed through the use of the http.set_option() functionality."
           },
           {
             "name": "report_results",
             "type": "boolean",
-            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "connect_timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
           }
         ],
         "returns": "<a href=\"#http-response\">http.response</a> <em>or</em> (nil, error message)"
@@ -973,17 +1013,32 @@
           {
             "name": "auto_decompress",
             "type": "boolean",
-            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false. The default value can also be changed through the use of the http.set_option() functionality."
           },
           {
             "name": "response_body_bytes",
             "type": "number",
-            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0). The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "base64_encoded_body",
+            "type": "boolean",
+            "description": "If set to true, indicates that the data parameter contains base64 encoded data."
           },
           {
             "name": "report_results",
             "type": "boolean",
-            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "connect_timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
           }
         ],
         "returns": "<a href=\"#http-response\">http.response</a> <em>or</em> (nil, error message)"
@@ -1022,12 +1077,12 @@
           {
             "name": "auto_decompress",
             "type": "boolean",
-            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false. The default value can also be changed through the use of the http.set_option() functionality."
           },
           {
             "name": "response_body_bytes",
             "type": "number",
-            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0). The default value can also be changed through the use of the http.set_option() functionality."
           },
           {
             "name": "base64_encoded_body",
@@ -1037,7 +1092,17 @@
           {
             "name": "report_results",
             "type": "boolean",
-            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "connect_timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
           }
         ],
         "returns": "<a href=\"#http-response\">http.response</a> <em>or</em> (nil, error message)",
@@ -1092,12 +1157,12 @@
           {
             "name": "auto_decompress",
             "type": "boolean",
-            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false. The default value can also be changed through the use of the http.set_option() functionality."
           },
           {
             "name": "response_body_bytes",
             "type": "number",
-            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0). The default value can also be changed through the use of the http.set_option() functionality."
           },
           {
             "name": "base64_encoded_body",
@@ -1107,7 +1172,17 @@
           {
             "name": "report_results",
             "type": "boolean",
-            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "connect_timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
           }
         ],
         "returns": "<a href=\"#http-response\">http.response</a> <em>or</em> (nil, error message)",
@@ -1167,12 +1242,12 @@
           {
             "name": "auto_decompress",
             "type": "boolean",
-            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false. The default value can also be changed through the use of the http.set_option() functionality."
           },
           {
             "name": "response_body_bytes",
             "type": "number",
-            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0). The default value can also be changed through the use of the http.set_option() functionality."
           },
           {
             "name": "base64_encoded_body",
@@ -1182,7 +1257,17 @@
           {
             "name": "report_results",
             "type": "boolean",
-            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "connect_timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
           }
         ],
         "returns": "<a href=\"#http-response\">http.response</a> <em>or</em> (nil, error message)",
@@ -1307,6 +1392,16 @@
                 "description": "Turn automatic cookie handling on and off."
               },
               {
+                "name": "auto_decompress",
+                "type": "boolean",
+                "description": "Turn on and off automatic inclusion of Accept-Encoding headers in requests with value \"gzip, deflate\"."
+              },
+              {
+                "name": "connect_timeout",
+                "type": "number",
+                "description": "Override default connection timeout in seconds. The default is 120 seconds."
+              },
+              {
                 "name": "follow_redirects",
                 "type": "boolean",
                 "description": "Turn automatic redirect handling on and off globally (can also be controlled per request)."
@@ -1345,6 +1440,21 @@
                 "name": "force_tlsv1_2",
                 "type": "boolean",
                 "description": "Force SSL connections to use TLSv1.2."
+              },
+              {
+                "name": "report_results",
+                "type": "boolean",
+                "description": "Overrides default. If set to false, no individual results will be reported for URLs though it will still contribute to aggregate results like user load time, bandwidth etc."
+              },
+              {
+                "name": "response_body_bytes",
+                "type": "number",
+                "description": "Overrides default value that specifies how many bytes of body data from the server's reply to save for each request. Default is 0."
+              },
+              {
+                "name": "timeout",
+                "type": "number",
+                "description": "Override default read/write timeout in seconds. The default is 120 seconds."
               }
             ]
           }
@@ -1413,17 +1523,27 @@
           {
             "name": "auto_decompress",
             "type": "boolean",
-            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false."
+            "description": "If set to true, compressed content will be automatically decompressed upon reception. Defaults to false. The default value can also be changed through the use of the http.set_option() functionality."
           },
           {
             "name": "response_body_bytes",
             "type": "number",
-            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0)."
+            "description": "Specifies how many bytes of body data from the server's reply to save. Defaults to zero (0). The default value can also be changed through the use of the http.set_option() functionality."
           },
           {
             "name": "report_results",
             "type": "boolean",
-            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true."
+            "description": "If set to false, no individual results will be reported for this URL though it will still contribute to aggregate results like user load time, bandwidth etc. Defaults to true. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "connect_timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
+          },
+          {
+            "name": "timeout",
+            "type": "number",
+            "description": "Connection timeout in seconds. Defaults to 120 seconds. The default value can also be changed through the use of the http.set_option() functionality."
           }
         ],
         "returns": "<a href=\"#http-response\">http.response</a> or (nil, error message)"
