@@ -2378,7 +2378,19 @@
             "description": "A string with characters to exclude from encoding."
           }
         ],
-        "returns": "string or (nil, error message)"
+        "returns": "string or (nil, error message)",
+        "examples": [{
+          "content": [
+            "local strViewstate = string.match(response[1].body,'id=\"__VIEWSTATE\" value=\"(.-)\"' )",
+            "http.request_batch({",
+            "  {\"POST\", \"http://my.example.se/Pages/Booking\",",
+            "  headers={[\"Content-Type\"]=\"application/x-www-form-urlencoded\"},",
+            "  data=\"__VIEWSTATE=\" ..url.escape(strViewstate)",
+            "  auto_decompress=true,",
+            "  response_body_bytes = 124000}",
+            "})"
+          ]
+        }]
       },
       {
         "id": "url-join",
