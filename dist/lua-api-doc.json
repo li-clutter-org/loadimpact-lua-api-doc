@@ -2359,7 +2359,21 @@
             "description": "Table with query parameters."
           }
         ],
-        "returns": "string or (nil, error message)"
+        "returns": "string or (nil, error message)",
+        "examples": [{
+          "content": [
+            "local form_fields = {",
+            "  mail = url.escape(\"admin@hola.com\"),",
+            "  password = url.escape(\"mypassword\")",
+            "}",
+            "http.request({",
+            "  method=\"POST\",",
+            "  url=\"http://loadimpact.com/\",",
+            "  headers={ [\"Content-Type\"]=\"application/x-www-form-urlencoded\" },",
+            "  data=url.build_query_string(form_fields)",
+            "})"
+          ]
+        }]
       },
       {
         "id": "url-escape",
