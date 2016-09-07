@@ -2265,6 +2265,7 @@
         "id": "test-get_clients",
         "name": "get_clients",
         "longName": "get_clients()",
+        "description": "Get the max number of VUs in the load test.",
         "returns": "number",
         "examples": [{
           "content": [
