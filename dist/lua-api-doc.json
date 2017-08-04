@@ -927,7 +927,7 @@
         "id": "http-page_end",
         "name": "page_end",
         "longName": "page_end(name)",
-        "description": "Marks the end of measurement for a page metric with specified name (must match the name specified in a previous call to <a href=\"#http-page_start\">http.page_start</a>). This function is useless without its peer <a href=\"#http-page_start\">http.page_start</a> which marks where the page metric start measurement is made. Our proxy recorder, as well as out Google Chrome recorder extension, will automatically detect page boundaries during a recording and insert <a href=\"#http-page_start\">http.page_start</a> and <a href=\"#http-page_end\">http.page_end</a> calls in the appropriate places.",
+        "description": "Marks the end of measurement for a page metric with specified name (must match the name specified in a previous call to <a href=\"#http-page_start\">http.page_start</a>). This function is useless without its peer <a href=\"#http-page_start\">http.page_start</a> which marks where the page metric start measurement is made. Our proxy recorder, as well as our Google Chrome recorder extension, will automatically detect page boundaries during a recording and insert <a href=\"#http-page_start\">http.page_start</a> and <a href=\"#http-page_end\">http.page_end</a> calls in the appropriate places.",
         "parameters": [
           {
             "name": "name",
@@ -955,7 +955,7 @@
         "id": "http-page_start",
         "name": "page_start",
         "longName": "page_start(name)",
-        "description": "Marks the start of measurement for a page metric. This function is useless without its peer <a href=\"#http-page_end\">http.page_end</a> which marks where the page metric end measurement is made. Our proxy recorder, as well as out Google Chrome recorder extension, will automatically detect page boundaries during a recording and insert <a href=\"#http-page_start\">http.page_start</a> and <a href=\"#http-page_end\">http.page_end</a> calls in the appropriate places.",
+        "description": "Marks the start of measurement for a page metric. This function is useless without its peer <a href=\"#http-page_end\">http.page_end</a> which marks where the page metric end measurement is made. Our proxy recorder, as well as our Google Chrome recorder extension, will automatically detect page boundaries during a recording and insert <a href=\"#http-page_start\">http.page_start</a> and <a href=\"#http-page_end\">http.page_end</a> calls in the appropriate places.",
         "parameters": [
           {
             "name": "name",
