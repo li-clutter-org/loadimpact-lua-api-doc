@@ -1127,7 +1127,7 @@
         "id": "http-put",
         "name": "put",
         "longName": "put(url, [ip, ][headers, ][data, ][auto_redirect, ][auto_decompress, ][response_body_bytes, ][base64_encoded_body, ][report_results])",
-        "description": "Send an HTTP PUT request and wait for a response from the remote server. This function is blocking and will only return once the transfer has completed. This is a wrapper function around <a href=\"#http-request\">http.request</a>",
+        "description": "Send an HTTP PUT request and wait for a response from the remote server. This function is blocking and will only return once the transfer has completed. This is a wrapper function around <a href=\"#http-request\">http.request</a>.<br/><em>[Note: By default a PUT request will be sent with a \"Expect: 100\" request header. In some cases this can cause problems in which case you will need to disable this behavior by setting an empty \"Expect\" header in your request.]</em>",
         "parameters": [
           {
             "name": "url",
