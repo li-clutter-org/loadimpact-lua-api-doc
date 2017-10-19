@@ -303,7 +303,7 @@
       { "id": "client-get_sleep_time",
         "name": "get_sleep_time",
         "longName": "get_sleep_time()",
-        "description": "Get the total amount of time (in seconds) the client/VU has spent sleeping up until now.<br/><i>[Note: during a script validation, all sleep operations are ignored in order to speed up the validation procedure.]</i>",
+        "description": "Get the total amount of time (in seconds) the client/VU has spent sleeping up until now.<br/><em>[Note: During a script validation, all sleep operations are ignored in order to speed up the validation procedure.]</em>",
         "returns": "number or (nil, error message)",
         "examples": [{
           "content": [
@@ -356,7 +356,7 @@
       { "id": "client-sleep",
         "name": "sleep",
         "longName": "sleep(interval, [unit])",
-        "description": "Pause client execution for interval * (1/unit) seconds.<br/><i>[Note: during a script validation, all sleep operations are ignored in order to speed up the validation procedure.]</i>",
+        "description": "Pause client execution for interval * (1/unit) seconds.<br/><em>[Note: During a script validation, all sleep operations are ignored in order to speed up the validation procedure.]</em>",
         "parameters": [
           {
             "name": "intervalx",
@@ -453,7 +453,7 @@
             { "id": "datastore-datastore-get_random",
               "name": "get_random",
               "longName": "get_random(unique)",
-              "description": "Returns a random row of data from the data store object. The optional parameter unique is a boolean that defaults to false, and which causes rows to only be returned once. I.e. repeated calls to get_random() with the unique parameter set to true will never return the same row from the data store more than once. Before using get_random(), the data store object must first have been initialized through the use of <a href=\"#datastore-open\">datastore.open</a>. [Note that the unique parameter only makes rows unique within the same client execution context. I.e. client #1 and client #2 may get the same data if they both call get_random() using the unique flag.]",
+              "description": "Returns a random row of data from the data store object. The optional parameter unique is a boolean that defaults to false, and which causes rows to only be returned once. I.e. repeated calls to get_random() with the unique parameter set to true will never return the same row from the data store more than once. Before using get_random(), the data store object must first have been initialized through the use of <a href=\"#datastore-open\">datastore.open</a>.<em>[Note: The unique parameter only makes rows unique within the same client execution context. I.e. client #1 and client #2 may get the same data if they both call get_random() using the unique flag.]</em>",
               "parameters": [
                 {
                   "name": "unique",
@@ -1127,7 +1127,7 @@
         "id": "http-put",
         "name": "put",
         "longName": "put(url, [ip, ][headers, ][data, ][auto_redirect, ][auto_decompress, ][response_body_bytes, ][base64_encoded_body, ][report_results])",
-        "description": "Send an HTTP PUT request and wait for a response from the remote server. This function is blocking and will only return once the transfer has completed. This is a wrapper function around <a href=\"#http-request\">http.request</a>",
+        "description": "Send an HTTP PUT request and wait for a response from the remote server. This function is blocking and will only return once the transfer has completed. This is a wrapper function around <a href=\"#http-request\">http.request</a>.<br/><em>[Note: By default a PUT request will be sent with a \"Expect: 100\" request header. In some cases this can cause problems in which case you will need to disable this behavior by setting an empty \"Expect\" header in your request.]</em>",
         "parameters": [
           {
             "name": "url",
@@ -1338,7 +1338,7 @@
         "id": "http-set_max_connections",
         "name": "set_max_connections",
         "longName": "set_max_connections(max_connections, max_connections_per_host)",
-        "description": "Sets the maximum number of connections a single VU may have open at any one time.<br/>em:[Note that this function used to be called ua.set_max_connections() in API version 1.0.]",
+        "description": "Sets the maximum number of connections a single VU may have open at any one time.<br/><em>[Note: This function used to be called ua.set_max_connections() in API version 1.0.]</em>",
         "parameters": [
           {
             "name": "max_connections",
@@ -1369,7 +1369,7 @@
         "id": "http-set_option",
         "name": "set_option",
         "longName": "set_option(name, value)",
-        "description": "Set a default behavior for HTTP requests sent after the call was made to this function. An option default value set using this function can usually be overridden in an individual HTTP request, when necessary.<br/><em>[Note: this is not to be confused with the <a href=\"#http-options\">http.options</a> function, which is used to transmit HTTP OPTIONS requests.]</em>",
+        "description": "Set a default behavior for HTTP requests sent after the call was made to this function. An option default value set using this function can usually be overridden in an individual HTTP request, when necessary.<br/><em>[Note: This is not to be confused with the <a href=\"#http-options\">http.options</a> function, which is used to transmit HTTP OPTIONS requests.]</em>",
         "parameters": [
           {
             "name": "name",
@@ -1473,7 +1473,7 @@
         "id": "http-set_user_agent_string",
         "name": "set_user_agent_string",
         "longName": "set_user_agent_string(ua_string)",
-        "description": "Sets the User-Agent HTTP header used by the VU in all following HTTP requests.<br/>The default user agent string looks as follows:<br/>LoadImpactRload/X.Y.Z (Load Impact; http://loadimpact.com);<br/>em:[Note that this function used to be called ua.set_string() in API version 1.0.]",
+        "description": "Sets the User-Agent HTTP header used by the VU in all following HTTP requests.<br/>The default user agent string looks as follows:<br/>LoadImpactRload/X.Y.Z (Load Impact; http://loadimpact.com);<br/><em>[Note: This function used to be called ua.set_string() in API version 1.0.]</em>",
         "parameters": [
           {
             "name": "ua_string",
